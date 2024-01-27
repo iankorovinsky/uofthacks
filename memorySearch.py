@@ -25,17 +25,34 @@ video_dict = {
     "William going to UoftHacks, hackathon with 500+ hackers!": "https://cdn.discordapp.com/attachments/1189032378354651216/1200595671460360222/IMG_8044.mov?ex=65c6c0da&is=65b44bda&hm=0e3011747c6562b1fcc2af8a6f335b73111e5306a07ad078707906e84b367cd6&",
     "William doing karaoke at Hack the Valley": "https://cdn.discordapp.com/attachments/1176251472791478300/1200181987307176097/IMG_4867.mov?ex=65c53f94&is=65b2ca94&hm=5060449bd85e32575c6c01799a0f14d7eaec8fb73c26ec2b2eec734d8f72c746&",
     "spicy noodle challenge at Deltahacks": "https://media.discordapp.net/attachments/1189032378354651216/1195874662073241682/IMG_7429.jpg?ex=65bece91&is=65ac5991&hm=8ce7cdb1c7cb2e580abdc950836c5e44b2e54a71d5af6da8f0802537cfd5f878&=&format=webp&width=712&height=948",
+    # games 
     "Subway surfers": "https://cdn.discordapp.com/attachments/1161450447807193091/1200871868035514468/cutteryt.mp4?ex=65c7c214&is=65b54d14&hm=93df2e0525ff8c8aaaa48852ed473033d16743c9a6f136ae5dc2b9bc1b02b280&",
-    "Pokemon Red & Blue": "",
-    "Super smash wii": "",
-
-    "Mario Kart Wii": "",
-    "Minecraft": "",
-    "Windows 7": "",
-    "Windows XP": "",
-
-    # Add more descriptions and corresponding video URLs as needed
+    "Animal Jam": "https://cdn.discordapp.com/attachments/1155327631361835119/1200878781242540083/Epic_trading_party_Animal_jam.mp4?ex=65c7c884&is=65b55384&hm=2ab843be6ec16411a876ed7aa938f4767ea6b4519b39db56be70976544f1df67&",
+    "Pokemon Red & Blue": "https://cdn.discordapp.com/attachments/1155327631361835119/1200880623456358543/Pokemon_Red_for_Game_Boy_HD_Full_Playthrough.mp4?ex=65c7ca3b&is=65b5553b&hm=8b1c6759debf7aff0c1a9765851dec2dba0ed9081ca33bca3cfcf33a14422b74&",
+    "Super smash wii": "https://cdn.discordapp.com/attachments/807724582705954857/1200881519611363359/Super_Smash_Bros_Brawl_Gameplay_Wii.mp4?ex=65c7cb11&is=65b55611&hm=e02f6499f4a0841fd63f11b1f3590fe5ab5d755be4789b1f2543ac2992ae297a&",
+    "Mario Kart Wii": "https://cdn.discordapp.com/attachments/807724582705954857/1200882080368840764/Mario_Kart_Wii_-_Longplay_Wii.mp4?ex=65c7cb97&is=65b55697&hm=dc058c7f2666e5a569075c89702134307dcf1e2e83b72e84d76666d79f33d0b2&",
+    "Minecraft": "https://cdn.discordapp.com/attachments/807724582705954857/1200882607303442462/Minecraft_DR_TRAYAURUS_COFFEE_SHOP_Custom_Mod_Adventure.mp4?ex=65c7cc14&is=65b55714&hm=2e9e30722091b3c006eb5a603563ffb4855833614b122da1d7b52346404e85b7&",
     "club penguin game holiday party 2010 walkthrough": "https://discord.com/channels/@me/1155327631361835119/1200873151018565773",
+    "Movie Star Planet": "https://cdn.discordapp.com/attachments/807724582705954857/1200884797799677952/MSP_-_VIP_.mp4?ex=65c7ce1f&is=65b5591f&hm=c0cb862a515e91b1be235ccf5b6eb6a7a666b1a1ee066ae854e4691eb3e073d0&",
+    "Fantage": "https://cdn.discordapp.com/attachments/807724582705954857/1200885273005916250/Fantage_Fashon_Show.mp4?ex=65c7ce90&is=65b55990&hm=edb19938412399091f0bff69179bcf5967f6a5c8b69e64dc1891765e9240bd04&",
+
+    # music
+    "Spice Girls Wannabe 90s throwback music": "https://www.youtube.com/watch?v=gJLIiF15wjQ&ab_channel=SpiceGirlsVEVO",
+    "Everyime We Touch Cascada 2000s music": "https://cdn.discordapp.com/attachments/807724582705954857/1200892200414883983/Cascada_-_Everytime_We_Touch_Official_video.mp4?ex=65c7d504&is=65b56004&hm=e2cf40d6d86d4ff148d1cf9f410acf67fb6ceb355af4265697368be0d1a42d95&",
+    "Britney Spears - Sometimes": "https://cdn.discordapp.com/attachments/807724582705954857/1200894113504038953/Britney_Spears_-_Sometimes_Official_HD_Video.mp4?ex=65c7d6cc&is=65b561cc&hm=6b0fbbf8b0a626b2765838fdeb33b3f90b9a917716ac0cbf60a14081e6fe55f3&",
+    "90s throwback Mariah Carey, Boyz II Men - One Sweet Day": "https://cdn.discordapp.com/attachments/807724582705954857/1200893579296510053/Mariah_Carey_Boyz_II_Men_-_One_Sweet_Day_Official_Video.mp4?ex=65c7d64c&is=65b5614c&hm=9414e5b45a7e40b4e7dd14de65c48009ea32cd56e4f3245e90bd70dbcfc8d169&",
+
+
+    "Windows 7": "https://cdn.discordapp.com/attachments/807724582705954857/1200883155951943721/R.I.P_Windows_7.mp4?ex=65c7cc97&is=65b55797&hm=63d45fc211d26f71d75a376a924e4eeb1a5c02867cecfdff25f46a972064d1c5&",
+    "Windows XP": "https://cdn.discordapp.com/attachments/807724582705954857/1200883802302591096/it_s_2005_you_Startup_a_Windows_XP_professional.mp4?ex=65c7cd31&is=65b55831&hm=49cdd6043025ca32c97e14c3b4279e95f5564df7e16f36aa71485a982fcd52a5&",
+
+    # plushies
+    "Lucy got her first large squishmellow!": "https://media.discordapp.net/attachments/807724582705954857/1200886252363337738/IMG_0967_Original.jpg?ex=65c7cf79&is=65b55a79&hm=878039b5949b2678415c0b23a88a64fc0f456b453ca28b8febbe075cf7d4a5da&=&format=webp&width=1712&height=1284",
+    "Family trip to China (got a baymax plush!)": "https://media.discordapp.net/attachments/807724582705954857/1200886253554520186/IMG_4718_Original.jpg?ex=65c7cf7a&is=65b55a7a&hm=e5b1658d91375a085a6ce42d1bb5e9170fb12ed2623b3f58447e61ff45f47a98&=&format=webp&width=1424&height=1284",
+    "Teddy bear plushie photo shoot": "https://media.discordapp.net/attachments/807724582705954857/1200886254003302600/IMG_0124_Original.jpg?ex=65c7cf7a&is=65b55a7a&hm=9fd110faebfa11bfa1cf6cba5033d321664c5eb1d90c686fac74dddededc1c41&=&format=webp&width=1712&height=1284",
+    "Stuffed animals from Secret Santa": "https://media.discordapp.net/attachments/807724582705954857/1200888331869892618/IMG_3648_Original.jpg?ex=65c7d169&is=65b55c69&hm=cbbf07393b386533119394fe142bd5ef1299654fe50aa0b6c19c142b3a5d48cb&=&format=webp&width=962&height=1282",
+    # Add more descriptions and corresponding video URLs as needed
+    "3 y.o. Lucy at Tiananmen Square with dog plush": "https://media.discordapp.net/attachments/807724582705954857/1200886254435303434/IMG_1086_Original.jpg?ex=65c7cf7a&is=65b55a7a&hm=657819b3638ecb83127d5a195d8060227c132e9e8c84ad32aa5b46b8966a052c&=&format=webp&width=1712&height=1284",
 }
 
 # Convert video_dict to the desired format
