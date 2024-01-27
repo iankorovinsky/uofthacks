@@ -13,7 +13,7 @@ api_key = os.getenv('COHERE_API_KEY')
 co = cohere.Client(api_key)
 # Example dictionary mapping descriptions to videos
 video_dict = {
-    "Ian sleeping on the ground at a hackathon.": "Vhttps://media.discordapp.net/attachments/1161450447807193091/1200673767542771782/IMG_8059.jpg?ex=65c70995&is=65b49495&hm=42ce11fbddd04798e3a114200b9b9a9424dd8b49f7751aa95499df53eefb2e2f&=&format=webp&width=712&height=948",
+    "Ian sleeping on the ground at a hackathon.": "https://media.discordapp.net/attachments/1161450447807193091/1200673767542771782/IMG_8059.jpg?ex=65c70995&is=65b49495&hm=42ce11fbddd04798e3a114200b9b9a9424dd8b49f7751aa95499df53eefb2e2f&=&format=webp&width=712&height=948",
     "William doing karaoke with Ian at Deltahacks": "https://cdn.discordapp.com/attachments/1189032378354651216/1195977651509264425/IMG_7435.mov?ex=65bf2e7c&is=65acb97c&hm=1530129896a85d0c0e69473fa8bc333fa51370a70b22e70a357ae9d0ceaa578a&",
     "William and Ian doing karaoke at a hackathon.": "https://cdn.discordapp.com/attachments/1176251472791478300/1200606493028909217/PXL_20240127_010105877.mp4?ex=65c6caee&is=65b455ee&hm=8e83f1ca999ed2f9af718848b9ed9680edc222a1a66ef3bf0899e69e1fbf2753&",
     "William exploring the Creepy UofT Engineering building with Ian and Lucy": "Video 6 URL",
