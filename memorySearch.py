@@ -3,6 +3,7 @@ import cohere
 
 import os
 from dotenv import load_dotenv
+from cohere.responses.chat import StreamEvent
 
 # Load environment variables from .env file
 load_dotenv()
@@ -47,6 +48,13 @@ def generate_chat_response(message, documents):
     response = co.chat(model="command", message=message, documents=documents)
     return response.text
 
+
+
+# Initialize a Python variable to store the text value
+text_value = "..."
+
+
+
 def main():
     st.title("Find Nostalgic Videos")
     
@@ -88,11 +96,25 @@ def main():
             # Add user message to chat history
             chat_history.append({"role": "user", "message": user_message})
 
+            # Initialize a Streamlit text element
+            text_element = st.empty()
+
+            response = ""
+
+            for event in co.chat(model="command", message=user_message, stream=True, documents=video_list, prompt_truncation="AUTO"):
+                if event.event_type == StreamEvent.TEXT_GENERATION:
+                    response += event.text
+                    text_element.text(response)
+                elif event.event_type == StreamEvent.CITATION_GENERATION:
+                    print(event.citations)
+                elif event.event_type == StreamEvent.STREAM_END:
+                    print(event.finish_reason)
+
             # Generate a chatbot response
-            response_message = generate_chat_response(user_message, video_list)
+            # response_message = generate_chat_response(user_message, video_list)
 
             # Add chatbot response to chat history
-            chat_history.append({"role": "chatbot", "message": response_message})
+            chat_history.append({"role": "chatbot", "message": response})
 
     # Display chat history
     for chat in chat_history:
