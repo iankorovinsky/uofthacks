@@ -25,9 +25,8 @@ async def mintNFT(name, description, imageUrl):
     return response.text
 
 
-"""
+
 name = input("Name: ")
 description = input("Description: ")
-imageUrl = ""
+imageUrl = input("Image Url: ")
 asyncio.run(mintNFT(name, description, imageUrl))
-"""
