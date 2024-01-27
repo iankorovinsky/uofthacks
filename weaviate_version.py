@@ -11,6 +11,13 @@ import requests
 import email_send
 import asyncio
 import nft
+import eyes
+
+"""
+
+SETUP
+
+"""
 
 load_dotenv()
 COHERE_API_KEY = os.environ['COHERE_API_KEY']
@@ -37,8 +44,51 @@ GEOLOCATION_URL = f'https://api.ipgeolocation.io/ipgeo?ip=138.51.76.67&apiKey={A
 
 print("Setup initialized")
 
+"""
 
-@app.route('/api/get_location')
+CORE APIS CALLED BY FRONTEND
+
+"""
+
+#Takes in an image description
+#Returns a list of file_names
+@app.route('/api/search', methods=["POST", "GET"])
+def search():
+    imagetext = request.form['imagetext']
+    filenames = query(imagetext)
+    print(filenames)
+    return jsonify({'results': filenames})
+
+#Takes in a timestamp and a person string
+#Outputs success JSON
+@app.route('/api/upload', methods=["POST", "GET"])
+def upload():
+    #Step 1: get timestamp + people
+    timestamp = request.form['timestamp']
+    person = request.form['person']
+    people = []
+    people.append(person)
+    #Step 2: open image and transcribe
+    image_text = vision(timestamp)
+    #Step 3: transcription
+    audio_text = transcribe(timestamp)
+    #step 4: location
+    location = 
+    #step 5: embed
+    
+    #step 6: nft
+    #step 7: append to json
+    #step 8: email
+    return jsonify({'results': 'success'})
+
+
+"""
+
+BACKEND PROCESSES
+
+"""
+
+@app.route('/api/get_location', methods=["POST", "GET"])
 def get_location():
     user_ip = "138.51.76.67"  # Get user's IP address
     response = requests.get(GEOLOCATION_URL)
@@ -58,6 +108,11 @@ def get_location():
         })
     else:
         return jsonify({'error': 'Could not get location'}), 500
+
+@app.route('/api/vision', methods=["POST", "GET"])
+def vision(timestamp):
+    text = eyes.main(timestamp)
+    return text
     
 @app.route('/api/', methods=["POST", "GET"])
 def test():
@@ -70,7 +125,7 @@ def weaviateinit():
         "vectorizer": "text2vec-cohere",  # If set to "none" you must always provide vectors yourself. Could be any other "text2vec-*" also.
         "moduleConfig": {
             "text2vec-cohere": {},
-            "generative-cohere": {}  # Ensure the `generative-openai` module is used for generative queries
+            "generative-cohere": {}  # Ensure the `generative-cohere` module is used for generative queries
         }
     }
 
@@ -81,7 +136,6 @@ def weaviateinit():
 @app.route('/api/add', methods=["POST", "GET"])
 def add():
     client.batch.configure(batch_size=10)
-    print()
     with client.batch as batch:
         properties = {
             "file_name": request.form['filename'],
@@ -97,8 +151,8 @@ def add():
     return jsonify({'results': 'Successfully added new video embedding!'})
 
 @app.route('/api/query', methods=["POST", "GET"])
-def query():
-    query = request.form['query']
+def query(text):
+    query = text
     print(f"Query: {query}")
     response = (
         client.query
@@ -109,13 +163,16 @@ def query():
     )
     print(response)
     responses = response["data"]["Get"]["Video2"]
-    return jsonify({'results': responses})
+    urls = []
+    for item in responses:
+        urls.append(item["file_name"])
+    return urls
 
 @app.route('/api/transcribe', methods=["POST", "GET"])
-def transcribe():
-    filepath = f"output_audio_{request.form['timestamp']}.wav"
+def transcribe(timestamp):
+    filepath = f"audio_{timestamp}.wav"
     text = transcription.transcriber(filepath)
-    return jsonify({'results': text})
+    return text
 
 @app.route('/api/recorder', methods=["POST", "GET"])
 def recorder():
@@ -130,7 +187,7 @@ def email():
 
 @app.route('/api/nft', methods=["POST", "GET"])
 def nonfungibletokens():
-    text = asyncio.run(nft.mintNFT(request.form['name'], request.form['description'], request.form['imageUrl']))
+    text = nft.mintNFT(request.form['name'], request.form['description'], request.form['imageUrl'])
     return jsonify({'results': text})
 
 if __name__ == '__main__':
