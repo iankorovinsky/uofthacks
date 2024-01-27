@@ -23,6 +23,13 @@ const links = [
         priority: false,
         transparant: true,
     },
+    {
+        name: "Record",
+        link: "/record",
+        id: "record",
+        priority: false,
+        transparant: true,
+    },
 ]
 
    /*

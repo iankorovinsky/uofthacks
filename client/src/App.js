@@ -9,6 +9,7 @@ import { ImageProvider } from './components/ImageContext';
 import Navbar from './components/Navbar'
 import Home from './pages/Home'
 import Create from './pages/Create'
+import Record from './pages/Record'
 
 const App = () => {
   return (
@@ -23,6 +24,7 @@ const App = () => {
               <Routes>
                 <Route path="/" exact element={<Home />} />
                 <Route path="/create" exact element={<Create />} />
+                <Route path="/record" exact element={<Record />} />
               </Routes>
             </AnimatePresence>
             </Suspense>
