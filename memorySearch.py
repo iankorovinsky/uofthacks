@@ -48,6 +48,7 @@ video_dict = {
     "Powerpuff Girls": "https://cdn.discordapp.com/attachments/807724582705954857/1200898924307824790/The_Powerpuff_Girls_Theme_Song_Cartoon_Network.mp4?ex=65c7db47&is=65b56647&hm=9949da7be6969f257f1bdea9412e7ac15858194363da2f55b7fb610520fb7c8d&",
     "Tom and Jerry": "https://cdn.discordapp.com/attachments/807724582705954857/1200898044506411161/Tom_Jerry_in_italiano_Un_po_di_aria_fresca_WB_Kids.mp4?ex=65c7da75&is=65b56575&hm=ee40c2d65aaa65848a0ce319f8d1c6249bacec5a59823611703974c5c56fcd68&",
 
+    # nostaglic anime
 
     # music
     "Spice Girls Wannabe 90s throwback music": "https://cdn.discordapp.com/attachments/807724582705954857/1200890907076083792/Spice_Girls_-_Wannabe_Official_Music_Video.mp4?ex=65c7d3cf&is=65b55ecf&hm=c1598eaa291f4e42cc5d25d96f961a77f9e579b266921ac2b80d82d2511db7e4&",
