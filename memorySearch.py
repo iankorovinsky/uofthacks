@@ -25,6 +25,12 @@ video_dict = {
     # Add more descriptions and corresponding video URLs as needed
 }
 
+# Convert video_dict to the desired format
+video_list = [{"description": desc, "url": url} for desc, url in video_dict.items()]
+
+# Print the resulting list
+print(video_list)
+
 video_descriptions = [key for key in video_dict.keys()]
 
 def rerank_descriptions(prompt, descriptions):
@@ -35,6 +41,11 @@ def rerank_descriptions(prompt, descriptions):
         model="rerank-multilingual-v2.0"
     )
     return response
+
+# Function to generate chat response using Cohere
+def generate_chat_response(message, documents):
+    response = co.chat(model="command", message=message, documents=documents)
+    return response.text
 
 def main():
     st.title("Find Nostalgic Videos")
@@ -65,6 +76,33 @@ def main():
 
                     else:
                         st.write("File retrieval error.")
+
+    # User input
+    user_message = st.text_input("You: ")
+
+    # Chat history
+    chat_history = []
+
+    if st.button("Send"):
+        if user_message:
+            # Add user message to chat history
+            chat_history.append({"role": "user", "message": user_message})
+
+            # Generate a chatbot response
+            response_message = generate_chat_response(user_message, video_list)
+
+            # Add chatbot response to chat history
+            chat_history.append({"role": "chatbot", "message": response_message})
+
+    # Display chat history
+    for chat in chat_history:
+        role = chat["role"]
+        message = chat["message"]
+
+        if role == "user":
+            st.text(f"You: {message}")
+        else:
+            st.text(f"Chatbot: {message}")
 
 if __name__ == "__main__":
     main()
