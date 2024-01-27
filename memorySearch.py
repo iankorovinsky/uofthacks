@@ -24,8 +24,9 @@ video_dict = {
     "UoftHacks found this random party at Skule": "https://cdn.discordapp.com/attachments/1161450447807193091/1200673768633290762/IMG_8053.mov?ex=65c70995&is=65b49495&hm=50b9d58e42f21e4e33a644eb1f4a31405be4e2bcb08bc1d12e49cf8295f51afc&",
     "William going to UoftHacks, hackathon with 500+ hackers!": "https://cdn.discordapp.com/attachments/1189032378354651216/1200595671460360222/IMG_8044.mov?ex=65c6c0da&is=65b44bda&hm=0e3011747c6562b1fcc2af8a6f335b73111e5306a07ad078707906e84b367cd6&",
     "William doing karaoke at Hack the Valley": "https://cdn.discordapp.com/attachments/1176251472791478300/1200181987307176097/IMG_4867.mov?ex=65c53f94&is=65b2ca94&hm=5060449bd85e32575c6c01799a0f14d7eaec8fb73c26ec2b2eec734d8f72c746&",
-    "spicy noodle challenge at Delthacks": "https://media.discordapp.net/attachments/1189032378354651216/1195874662073241682/IMG_7429.jpg?ex=65bece91&is=65ac5991&hm=8ce7cdb1c7cb2e580abdc950836c5e44b2e54a71d5af6da8f0802537cfd5f878&=&format=webp&width=712&height=948",
+    "spicy noodle challenge at Deltahacks": "https://media.discordapp.net/attachments/1189032378354651216/1195874662073241682/IMG_7429.jpg?ex=65bece91&is=65ac5991&hm=8ce7cdb1c7cb2e580abdc950836c5e44b2e54a71d5af6da8f0802537cfd5f878&=&format=webp&width=712&height=948",
     # Add more descriptions and corresponding video URLs as needed
+    "club penguin game holiday party 2010 walkthrough": "https://www.youtube.com/watch?v=YUxU5kqJ76s&ab_channel=CPMemoriesVideos",
 }
 
 # Convert video_dict to the desired format
