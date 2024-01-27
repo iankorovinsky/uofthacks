@@ -7,7 +7,7 @@
     <meta name="theme-color" content="#000000" />
     <meta
       name="description"
-      content="Web site created using create-react-app"
+      content="Instant Nostalgia, Eternal Memories."
     />
     <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
     <!--
@@ -24,7 +24,7 @@
       work correctly both with client-side routing and a non-root public URL.
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
-    <title>React App</title>
+    <title>Nostalg.ai</title>
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
@@ -39,5 +39,57 @@
       To begin the development, run `npm start` or `yarn start`.
       To create a production bundle, use `npm run build` or `yarn build`.
     -->
+    <button id="login">Auth0 Login</button>
+    <button id="logout">Logout Button</button>
+    <div id="profile"></div>
+
+    <script src="https://cdn.auth0.com/js/auth0-spa-js/2.0/auth0-spa-js.production.js"></script>
+    <script>auth0.createAuth0Client({
+      domain: "dev-56vft1xoyo3s52an.us.auth0.com",
+      clientId: "6iuNjiEwwMJx6EbmKXiDKhASFL7QbDhA",
+      authorizationParams: {
+        redirect_uri: window.location.origin
+      }
+    }).then(async (auth0Client) => {
+      // Assumes a button with id "login" in the DOM
+      const loginButton = document.getElementById("login");
+    
+      loginButton.addEventListener("click", (e) => {
+        e.preventDefault();
+        auth0Client.loginWithRedirect();
+      });
+    
+      if (location.search.includes("state=") && 
+          (location.search.includes("code=") || 
+          location.search.includes("error="))) {
+        await auth0Client.handleRedirectCallback();
+        window.history.replaceState({}, document.title, "/");
+      }
+    
+      // Assumes a button with id "logout" in the DOM
+      const logoutButton = document.getElementById("logout");
+    
+      logoutButton.addEventListener("click", (e) => {
+        e.preventDefault();
+        auth0Client.logout();
+      });
+    
+      const isAuthenticated = await auth0Client.isAuthenticated();
+      const userProfile = await auth0Client.getUser();
+    
+      // Assumes an element with id "profile" in the DOM
+      const profileElement = document.getElementById("profile");
+    
+      if (isAuthenticated) {
+        profileElement.style.display = "block";
+        profileElement.innerHTML = `
+                <p>${userProfile.name}</p>
+                <p>${userProfile.email}</p>
+                <img src="${userProfile.picture}" />
+              `;
+      } else {
+        profileElement.style.display = "none";
+      }
+    });</script>
   </body>
 </html>

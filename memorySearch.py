@@ -25,6 +25,7 @@ video_dict = {
     "William going to UoftHacks, hackathon with 500+ hackers!": "https://cdn.discordapp.com/attachments/1189032378354651216/1200595671460360222/IMG_8044.mov?ex=65c6c0da&is=65b44bda&hm=0e3011747c6562b1fcc2af8a6f335b73111e5306a07ad078707906e84b367cd6&",
     "William doing karaoke at Hack the Valley": "https://cdn.discordapp.com/attachments/1176251472791478300/1200181987307176097/IMG_4867.mov?ex=65c53f94&is=65b2ca94&hm=5060449bd85e32575c6c01799a0f14d7eaec8fb73c26ec2b2eec734d8f72c746&",
     "spicy noodle challenge at Deltahacks": "https://media.discordapp.net/attachments/1189032378354651216/1195874662073241682/IMG_7429.jpg?ex=65bece91&is=65ac5991&hm=8ce7cdb1c7cb2e580abdc950836c5e44b2e54a71d5af6da8f0802537cfd5f878&=&format=webp&width=712&height=948",
+    
     # games 
     "Subway surfers": "https://cdn.discordapp.com/attachments/1161450447807193091/1200871868035514468/cutteryt.mp4?ex=65c7c214&is=65b54d14&hm=93df2e0525ff8c8aaaa48852ed473033d16743c9a6f136ae5dc2b9bc1b02b280&",
     "Animal Jam": "https://cdn.discordapp.com/attachments/1155327631361835119/1200878781242540083/Epic_trading_party_Animal_jam.mp4?ex=65c7c884&is=65b55384&hm=2ab843be6ec16411a876ed7aa938f4767ea6b4519b39db56be70976544f1df67&",
@@ -36,19 +37,24 @@ video_dict = {
     # william nostalgia
     "juice": "https://lh3.googleusercontent.com/pw/ABLVV85848VP21JSbNvLzP93ere8zA2x5fLNal9JBdg__zz6xLItmBg0OS_1CjqlJCxhVN7Cyp84i-JikRWeTfhBy2DupnLMfcxXmX6A4fR6Xo12yD665IE7vWEuSszlpgo4JJJfoOSejVRmMdKaT_2Z_nmEq-Z9OXr7F_FFNkcYqCMmkPoVFSoYLyDxF25wf_HcbuDq54_VLGKOMVtbqTuwe3ZmWsf_laN-acxKs3R98y8qGEzQBgNK0LQXgt0TnVPvwXTvq36-N8vmbGPhzDfpbNb1GbRbkFqb8rCVaB5FwoA4_UkARPp6ku7ZH9tWwp5BgP_WaY28yed27UfGSYUs0vP38cX7p8cLWaoRQJg4qNz8-VoQXnxmrzYXzzR79hcd0oPbl6FllkrPo2TIeW4u0Cf8OBuUKL4_FU5RSfQ7_dU8hJT71umQt2Iat14lrE5kzBQz5gDs0jesvzmh-zgOckl3YAwu9431gqoSr-fO8ld1MxUSkX9nD-5ah8kn42UfpelcHeDUFjRgI67Yzzwdh5_X_Gv_EUU6g7jh3NEeuDDr1Az4p8IYKO-SPMQkPAuhMeOd59AvN57nncFa-iO6P1p9foXn5IQNlzJlXcZdQzMrONoZQJpuYa5B3E3PljHz0HirKDYbqbHpszQRQSeHBJk-F2vgmwLcGYL2-P4gqGt7ub_EwMfUrtm9IjN1QHBgCP9W5WPY70-aS6uHABI6ggUf89QY87V78J8F3ln3zH3Ke3-gvfSGb6wa5u2jC6EDzUSyKa9rBd9AAoHEIOspxOppofmllDOh6o7lxlFRKBBk4QMk5FiV6ZGwdidOG0rGsLelUGOvPqfCCy3uEhLa7BQFBbh6pm5EiY82ULwhfykPmy4VXJ0ZLFxRzrFvgwkyclti9AcipsiDGOhEZCwCSPGvJd0j56eZa2KaAsSby3giy8RpXZiTwaADJF3c3usY-ri9WUT72KRuXMV-gsZo4nTGOpO_b9r8-Dx_Az9gTxn2xKapcFdFgGs--mucS68jTvK6vKmXXecBpdQiF43kU1E44hAMjpsomdeSp7JtKpcYG_7jI1VlUZ3SHdO1uDIJnOrl-mRJZS5nU-zupD6Ols4OV6VXNK0g1vgeJvNUdEE=w804-h1430-s-no-gm?authuser=2",
     "teddy bear hackathon": "https://media.discordapp.net/attachments/1195521115926302771/1196488559801139281/IMG_7464.jpg?ex=65c10a4e&is=65ae954e&hm=8060ecec870d0b7acaefc9d158005d7fe28088dd81912fa612d882b866baedb7&=&format=webp&width=1265&height=948",
-    "Alina hugging teddy bear": "https://lh3.googleusercontent.com/pw/ABLVV87nSyHfokDbc-02ou_ZCIiKxw1JssCcobTxszlCeKfDyxVjxjlcamQ8PTAS9j4Ui3qpGQIBZMoXvS42jRAtc_WfAO9jhFVwNDGcpYInIu8Uj1vd64SMMw1X701uYvd3_3DYNyfoKsttzH5G1wLCeV407_RlNUdk9pHaY-Eaq4E5Tx4jnhr0ojZMp1MPl5dmlCbK82rRa-xHYDoGaYM71hOSpoJXNoznQ3jpC48q1FBtL2vzEgJVE7SNLoHzAruUOFjX5-bC7FXoBB02H60IZ-VZkQWi_TjaaOq5EalMFeRqsqN2xUnBDQVF-BOleUFOxUg_EEWIHVEgBik7NjlQyIsjM8NQ5Ng2aWiED0OOx4__m-nA7gQwYfhgdtCPozoNB1Cav95wJTPHsHFOXTu3n0i_MNfpdh_2-88l4YTcl8Nq9P2lZp53dL94VvMryg8KKAiyXoAoOZ5azKvRW8xA-OLrqPIPgXWHDO1N6q38JkzZ-ershGdPmuBjBlE6r6ghKAqp7M4dO9lxk5OEHNx2LDVNOyEMhz1HYVEwZYFkk4DYghnoKWuI7MbRajCk9yhgMa_63uvJJCcblaPxTFmtFzcEhA2HHD9bXWKOJTPRmbzeqAM6df_DqA1VLfbGiXXVdlj3x8IP693fA8KntWjo7RJRE_oCNs9ceAg9Ga32cUmaYTb4NXcpKn-xQIml8uPjh2U1zXMQ0b2jKbR1jrB-fcjnYatf9xJDVVzoOJ4F4eIxQagHL09eUqPHNXn2FLNd_gMh90EG29khpr7g7RnhaxkoDYfKHIeUesTqOsBVN-KMo1ipI0Ct43P1TIdgwaoBtrjUQnkpg878nhfNzIt2APAgyPRXaG1EjhppucwdxRkKn5WmJAzi8y137Jun-dNbfjLLM-uKSfc4bjZyQWFp2tvlzXxwSO-TqKNQVcbZtHO4zEHEs3_i9aWnmpk7fER5murvMHsiFEzjiN1Uw5PDAYaWqvVzkSEGQmI-104klbd9-_SnqK72CWMCC3zVY6tOBtF6g_b3Vl5t4n_F4QYbW8jrbPa4tHKTlrdHUYFd76GtwJ8e25LN2fPEzsRmO8wi-g0IeuMRZF2xFu_-dcHlU6z_q9F_os8rId6ltdwxhX4G=w1080-h1430-s-no-gm?authuser=2",
-
+ 
     # Add more descriptions and corresponding video URLs as needed
     "club penguin game holiday party 2010 walkthrough": "https://discord.com/channels/@me/1155327631361835119/1200873151018565773",
     "Movie Star Planet": "https://cdn.discordapp.com/attachments/807724582705954857/1200884797799677952/MSP_-_VIP_.mp4?ex=65c7ce1f&is=65b5591f&hm=c0cb862a515e91b1be235ccf5b6eb6a7a666b1a1ee066ae854e4691eb3e073d0&",
     "Fantage": "https://cdn.discordapp.com/attachments/807724582705954857/1200885273005916250/Fantage_Fashon_Show.mp4?ex=65c7ce90&is=65b55990&hm=edb19938412399091f0bff69179bcf5967f6a5c8b69e64dc1891765e9240bd04&",
 
-    # music
-    "Spice Girls Wannabe 90s throwback music": "https://www.youtube.com/watch?v=gJLIiF15wjQ&ab_channel=SpiceGirlsVEVO",
-    "Everyime We Touch Cascada 2000s music": "https://cdn.discordapp.com/attachments/807724582705954857/1200892200414883983/Cascada_-_Everytime_We_Touch_Official_video.mp4?ex=65c7d504&is=65b56004&hm=e2cf40d6d86d4ff148d1cf9f410acf67fb6ceb355af4265697368be0d1a42d95&",
-    "Britney Spears - Sometimes": "https://cdn.discordapp.com/attachments/807724582705954857/1200894113504038953/Britney_Spears_-_Sometimes_Official_HD_Video.mp4?ex=65c7d6cc&is=65b561cc&hm=6b0fbbf8b0a626b2765838fdeb33b3f90b9a917716ac0cbf60a14081e6fe55f3&",
-    "90s throwback Mariah Carey, Boyz II Men - One Sweet Day": "https://cdn.discordapp.com/attachments/807724582705954857/1200893579296510053/Mariah_Carey_Boyz_II_Men_-_One_Sweet_Day_Official_Video.mp4?ex=65c7d64c&is=65b5614c&hm=9414e5b45a7e40b4e7dd14de65c48009ea32cd56e4f3245e90bd70dbcfc8d169&",
+    # cartoons
+    "Caillou theme song": "https://cdn.discordapp.com/attachments/807724582705954857/1200898043873087508/Caillou_Theme_Song.mp4?ex=65c7da75&is=65b56575&hm=78b21def6969bad7444f2fdf0613afffbb6a0574024409c8ae202c30faccbfc6&",
+    "Powerpuff Girls": "https://cdn.discordapp.com/attachments/807724582705954857/1200898924307824790/The_Powerpuff_Girls_Theme_Song_Cartoon_Network.mp4?ex=65c7db47&is=65b56647&hm=9949da7be6969f257f1bdea9412e7ac15858194363da2f55b7fb610520fb7c8d&",
+    "Tom and Jerry": "https://cdn.discordapp.com/attachments/807724582705954857/1200898044506411161/Tom_Jerry_in_italiano_Un_po_di_aria_fresca_WB_Kids.mp4?ex=65c7da75&is=65b56575&hm=ee40c2d65aaa65848a0ce319f8d1c6249bacec5a59823611703974c5c56fcd68&",
 
+    # nostaglic anime
+
+    # music
+    "Spice Girls Wannabe 90s throwback music": "https://cdn.discordapp.com/attachments/807724582705954857/1200890907076083792/Spice_Girls_-_Wannabe_Official_Music_Video.mp4?ex=65c7d3cf&is=65b55ecf&hm=c1598eaa291f4e42cc5d25d96f961a77f9e579b266921ac2b80d82d2511db7e4&",
+    "Everyime We Touch Cascada 2000s music": "https://cdn.discordapp.com/attachments/807724582705954857/1200892200414883983/Cascada_-_Everytime_We_Touch_Official_video.mp4?ex=65c7d504&is=65b56004&hm=e2cf40d6d86d4ff148d1cf9f410acf67fb6ceb355af4265697368be0d1a42d95&",
+    "Britney Spears - Sometime 90s throwback": "https://cdn.discordapp.com/attachments/807724582705954857/1200894113504038953/Britney_Spears_-_Sometimes_Official_HD_Video.mp4?ex=65c7d6cc&is=65b561cc&hm=6b0fbbf8b0a626b2765838fdeb33b3f90b9a917716ac0cbf60a14081e6fe55f3&",
+    "90s throwback Mariah Carey, Boyz II Men - One Sweet Day 90s throwback": "https://cdn.discordapp.com/attachments/807724582705954857/1200893579296510053/Mariah_Carey_Boyz_II_Men_-_One_Sweet_Day_Official_Video.mp4?ex=65c7d64c&is=65b5614c&hm=9414e5b45a7e40b4e7dd14de65c48009ea32cd56e4f3245e90bd70dbcfc8d169&",
 
     "Windows 7": "https://cdn.discordapp.com/attachments/807724582705954857/1200883155951943721/R.I.P_Windows_7.mp4?ex=65c7cc97&is=65b55797&hm=63d45fc211d26f71d75a376a924e4eeb1a5c02867cecfdff25f46a972064d1c5&",
     "Windows XP": "https://cdn.discordapp.com/attachments/807724582705954857/1200883802302591096/it_s_2005_you_Startup_a_Windows_XP_professional.mp4?ex=65c7cd31&is=65b55831&hm=49cdd6043025ca32c97e14c3b4279e95f5564df7e16f36aa71485a982fcd52a5&",

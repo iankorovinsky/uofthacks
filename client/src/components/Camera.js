@@ -2,6 +2,7 @@ import React, { useRef, useState } from 'react';
 import { Button } from "@chakra-ui/button"
 
 import './component-styles/Camera.css'
+import { useImageContext } from './ImageContext';
 
 const Camera = () => {
   const videoRef = useRef(null);
@@ -10,6 +11,8 @@ const Camera = () => {
   const [flash, setFlash] = useState(false);
   const [photoTaken, setPhotoTaken] = useState(false);
   const [cameraActive, setCameraActive] = useState(false);
+
+  const { setImageSrc } = useImageContext();
 
   const startVideo = async () => {
     try {
@@ -42,7 +45,7 @@ const Camera = () => {
     
         // You can save the image from here, display it, or send it to a server
         const imageSrc = canvas.toDataURL('image/png');
-        console.log(imageSrc);
+        setImageSrc(imageSrc)
     
         setFlash(true);
         setPhotoTaken(true);

@@ -1,17 +1,18 @@
 .camera-container {
-    position: relative;
+  position: relative;
 }
   
 .video-wrapper {
   position: relative;
+  width: 480px;
 }
 
 .flash-overlay {
   position: absolute;
   top: 0;
   left: 0;
-  width: 640px;
-  height: 480px;
+  width: 480px;
+  height: 360px;
   background-color: rgb(145, 145, 145);
   opacity: 0.8;
   z-index: 10;
