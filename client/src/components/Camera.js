@@ -1,5 +1,7 @@
 import React, { useRef, useState } from 'react';
-import './Camera.css'
+import { Button } from "@chakra-ui/button"
+
+import './component-styles/Camera.css'
 
 const Camera = () => {
   const videoRef = useRef(null);
@@ -32,39 +34,41 @@ const Camera = () => {
   };
 
   const takePhoto = () => {
-    const video = videoRef.current;
-    const canvas = canvasRef.current;
-    const context = canvas.getContext('2d');
-    context.drawImage(video, 0, 0, canvas.width, canvas.height);
-
-    // You can save the image from here, display it, or send it to a server
-    const imageSrc = canvas.toDataURL('image/png');
-    console.log(imageSrc);
-
-    setFlash(true);
-    setPhotoTaken(true);
-    setTimeout(() => {
-      setFlash(false);
-    }, 1000);
-
-    setTimeout(() => {
-        setPhotoTaken(false);
-      }, 2000);
+    if(cameraActive) {
+        const video = videoRef.current;
+        const canvas = canvasRef.current;
+        const context = canvas.getContext('2d');
+        context.drawImage(video, 0, 0, canvas.width, canvas.height);
+    
+        // You can save the image from here, display it, or send it to a server
+        const imageSrc = canvas.toDataURL('image/png');
+        console.log(imageSrc);
+    
+        setFlash(true);
+        setPhotoTaken(true);
+        setTimeout(() => {
+          setFlash(false);
+        }, 1000);
+    
+        setTimeout(() => {
+            setPhotoTaken(false);
+        }, 2000);
+    }
   };
 
   return (
     <div className="camera-container">
-      <div className="video-wrapper">
+      <div className={`video-wrapper`}>
         <video ref={videoRef} width="640" height="480" />
         {flash && <div className="flash-overlay"></div>}
       </div>
-      <div className='flex justify-around'>
+      <div className='flex justify-around m-5'>
         {cameraActive ? (
-            <button onClick={stopVideo}>Stop Camera</button>
+            <Button onClick={stopVideo}>Stop Camera</Button>
         ) : (
-            <button onClick={startVideo}>Start Camera</button>
+            <Button onClick={startVideo}>Start Camera</Button>
         )}
-      <button onClick={takePhoto}>Take Photo</button>
+      <Button onClick={takePhoto}>Take Photo</Button>
     </div>
       <canvas ref={canvasRef} width="640" height="480" style={{ display: 'none' }} />
       {photoTaken && <div className="photo-taken-message">Photo Taken</div>}
