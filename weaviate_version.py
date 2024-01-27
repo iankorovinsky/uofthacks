@@ -4,6 +4,7 @@ import cohere
 from flask_cors import CORS
 from dotenv import load_dotenv
 import weaviate
+import transcription
 
 load_dotenv()
 COHERE_API_KEY = os.environ['COHERE_API_KEY']
@@ -47,8 +48,8 @@ def add():
         )
     return jsonify({'results': 'Successfully added new video embedding!'})
 
-@app.route('/api/branch', methods=["POST", "GET"])
-def branch():
+@app.route('/api/query', methods=["POST", "GET"])
+def query():
     query = request.form['query']
     print(f"Query: {query}")
     response = (
@@ -62,6 +63,12 @@ def branch():
     responses = response["data"]["Get"]["Video"]
     print(responses)
     return jsonify({'results': responses})
+
+@app.route('/api/transcribe', methods=["POST", "GET"])
+def test():
+    text = transcription.transcriber(request.form['filename'])
+    return jsonify({'results': text})
+
 
 
 if __name__ == '__main__':
