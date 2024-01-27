@@ -3,6 +3,8 @@ import React, { Suspense } from "react";
 import { AnimatePresence } from 'framer-motion'
 
 import { ChakraProvider } from '@chakra-ui/react';
+
+import { ImageProvider } from './components/ImageContext';
  
 import Navbar from './components/Navbar'
 import Home from './pages/Home'
@@ -12,18 +14,20 @@ const App = () => {
   return (
     <div className="App bg-white">
     <ChakraProvider>
-      <BrowserRouter>
-          <Suspense fallback={<div>Page Loading...</div>}>
-          <Navbar />
-          <AnimatePresence
-          mode='wait'>
-            <Routes>
-              <Route path="/" exact element={<Home />} />
-              <Route path="/create" exact element={<Create />} />
-            </Routes>
-          </AnimatePresence>
-          </Suspense>
-      </BrowserRouter>
+      <ImageProvider>
+        <BrowserRouter>
+            <Suspense fallback={<div>Page Loading...</div>}>
+            <Navbar />
+            <AnimatePresence
+            mode='wait'>
+              <Routes>
+                <Route path="/" exact element={<Home />} />
+                <Route path="/create" exact element={<Create />} />
+              </Routes>
+            </AnimatePresence>
+            </Suspense>
+        </BrowserRouter>
+      </ImageProvider>
     </ChakraProvider>
   </div>
   )
