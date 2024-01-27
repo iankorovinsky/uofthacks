@@ -61,6 +61,3 @@ def email_request(names, link):
     password = os.environ['SERVER_PASSWORD']  # Replace with your email password
 
     send_emails(name_email_dict, names, link, email_subject, sender_email, password)
-
-init()
-email_request(["Ian"], "https://goerli.etherscan.io/nft/0xb91876637e407b75fc5da1a81114db68f4851932/53337")

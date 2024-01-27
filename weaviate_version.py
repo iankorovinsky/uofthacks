@@ -8,16 +8,15 @@ import transcription
 import recorder as rc
 import photo
 import requests
+import email_send
+import asyncio
+import nft
 
 load_dotenv()
 COHERE_API_KEY = os.environ['COHERE_API_KEY']
 co = cohere.Client(os.environ['COHERE_API_KEY'])
 transcription.init()
-"""
-save first photo
-vision the image for a description
-"""
-
+email_send.init()
 
 client = weaviate.Client(
     url = os.environ['DB_URL'],  
@@ -123,6 +122,16 @@ def recorder():
     timestamp = rc.main()
     photo.get_photo(timestamp)
     return jsonify({'results': timestamp})
+
+@app.route('/api/email', methods=["POST", "GET"])
+def email():
+    email_send.email_request(request.form['names'], request.form['link'])
+    return jsonify({'results': 'success'})
+
+@app.route('/api/nft', methods=["POST", "GET"])
+def nonfungibletokens():
+    text = asyncio.run(nft.mintNFT(request.form['name'], request.form['description'], request.form['imageUrl']))
+    return jsonify({'results': text})
 
 if __name__ == '__main__':
     app.run(debug=True, port=2000)
