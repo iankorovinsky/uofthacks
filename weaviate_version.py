@@ -5,9 +5,19 @@ from flask_cors import CORS
 from dotenv import load_dotenv
 import weaviate
 import transcription
+import recorder as rc
+import photo
+import requests
 
 load_dotenv()
 COHERE_API_KEY = os.environ['COHERE_API_KEY']
+co = cohere.Client(os.environ['COHERE_API_KEY'])
+transcription.init()
+"""
+save first photo
+vision the image for a description
+"""
+
 
 client = weaviate.Client(
     url = os.environ['DB_URL'],  
@@ -23,11 +33,50 @@ app = Flask(__name__)
 CORS(app, origins='http://localhost:3000')
 co = cohere.Client(os.environ['COHERE_API_KEY'])
 
+API_KEY = os.environ['GEOLOCATION_API_KEY']
+GEOLOCATION_URL = f'https://api.ipgeolocation.io/ipgeo?ip=138.51.76.67&apiKey={API_KEY}'
+
 print("Setup initialized")
 
+
+@app.route('/api/get_location')
+def get_location():
+    user_ip = "138.51.76.67"  # Get user's IP address
+    response = requests.get(GEOLOCATION_URL)
+    data = response.json()
+    print("----")
+    print(data)
+
+    if response.status_code == 200:
+        return jsonify({
+            'ip': user_ip,
+            'country': data.get('country_name'),
+            'state': data.get('state_prov'),
+            'city': data.get('city'),
+            'latitude': data.get('latitude'),
+            'longitude': data.get('longitude'),
+            'organization': data.get('organization')
+        })
+    else:
+        return jsonify({'error': 'Could not get location'}), 500
+    
 @app.route('/api/', methods=["POST", "GET"])
 def test():
     return jsonify({'results': 'Reached sample endpoint!'})
+
+@app.route('/api/weaviateinit', methods=["POST", "GET"])
+def weaviateinit():    
+    video_obj = {
+        "class": "Video2",
+        "vectorizer": "text2vec-cohere",  # If set to "none" you must always provide vectors yourself. Could be any other "text2vec-*" also.
+        "moduleConfig": {
+            "text2vec-cohere": {},
+            "generative-cohere": {}  # Ensure the `generative-openai` module is used for generative queries
+        }
+    }
+
+    client.schema.create_class(video_obj)
+    return jsonify({'status':'success initializing'})
 
 
 @app.route('/api/add', methods=["POST", "GET"])
@@ -36,15 +85,15 @@ def add():
     print()
     with client.batch as batch:
         properties = {
-            "file_name": request.form['File Name'],
-            "transcription": request.form['Transcription'],
-            "video_context": request.form['Context'],
-            "people": request.form['People'],
-            "location": request.form['Location']
+            "file_name": request.form['filename'],
+            "transcription": request.form['transcription'],
+            "video_context": request.form['context'],
+            "people": request.form['people'],
+            "location": request.form['location']
         }
         batch.add_data_object(
             data_object=properties,
-            class_name="Video"
+            class_name="Video2"
         )
     return jsonify({'results': 'Successfully added new video embedding!'})
 
@@ -54,22 +103,26 @@ def query():
     print(f"Query: {query}")
     response = (
         client.query
-        .get("Video", ["file_name", "transcription", "video_context", "people", "location"])
+        .get("Video2", ["file_name", "transcription", "video_context", "people", "location"])
         .with_near_text({"concepts": [query]})
         .with_limit(3)
         .do()
     )
-    
-    responses = response["data"]["Get"]["Video"]
-    print(responses)
+    print(response)
+    responses = response["data"]["Get"]["Video2"]
     return jsonify({'results': responses})
 
 @app.route('/api/transcribe', methods=["POST", "GET"])
-def test():
-    text = transcription.transcriber(request.form['filename'])
+def transcribe():
+    filepath = f"output_audio_{request.form['timestamp']}.wav"
+    text = transcription.transcriber(filepath)
     return jsonify({'results': text})
 
-
+@app.route('/api/recorder', methods=["POST", "GET"])
+def recorder():
+    timestamp = rc.main()
+    photo.get_photo(timestamp)
+    return jsonify({'results': timestamp})
 
 if __name__ == '__main__':
     app.run(debug=True, port=2000)
