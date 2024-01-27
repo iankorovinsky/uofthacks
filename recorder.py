@@ -90,6 +90,21 @@ def combine_audio_video(timestamp):
 def main():
     global recording
     global timestamp
+    # Parameters for audio recording
+    global samplerate
+    global channels
+    global audio_filename
+    global video_filename
+    samplerate = 44100  # Sample rate in Hertz
+    channels = 2        # Number of audio channels
+    timestamp = time.time()
+    audio_filename = f'media/audio/output_audio_{timestamp}.wav'  # Filename to save the audio
+
+    # Parameters for video recording
+    video_filename = f'media/video/output_video_{timestamp}.avi'  # Filename to save the video
+
+    # Create a queue to hold the audio data
+    q = queue.Queue()
     # Start the audio and video recording in separate threads
     audio_thread = threading.Thread(target=record_audio)
     video_thread = threading.Thread(target=record_video)
@@ -109,7 +124,5 @@ def main():
     recording = True
 
     # Combine audio and video
-    combine_audio_video(timestamp)
-
-if __name__ == "__main__":
-    main()
+    result= combine_audio_video(timestamp)
+    return result
