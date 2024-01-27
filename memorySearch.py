@@ -85,18 +85,18 @@ def main():
                         st.write("File retrieval error.")
 
     # User input
-    user_message = st.text_input("Chat with your memories: ")
+    user_message = st.sidebar.text_input("Chat with your memories: ")
 
     # Chat history
     chat_history = []
 
-    if st.button("Send"):
+    if st.sidebar.button("Send"):
         if user_message:
             # Add user message to chat history
             chat_history.append({"role": "user", "message": user_message})
 
             # Initialize a Streamlit text element
-            text_element = st.empty()
+            text_element = st.sidebar.empty()
             text_element.text("Searching...")
 
             response = ""
