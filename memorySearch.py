@@ -26,7 +26,7 @@ video_dict = {
     "William doing karaoke at Hack the Valley": "https://cdn.discordapp.com/attachments/1176251472791478300/1200181987307176097/IMG_4867.mov?ex=65c53f94&is=65b2ca94&hm=5060449bd85e32575c6c01799a0f14d7eaec8fb73c26ec2b2eec734d8f72c746&",
     "spicy noodle challenge at Deltahacks": "https://media.discordapp.net/attachments/1189032378354651216/1195874662073241682/IMG_7429.jpg?ex=65bece91&is=65ac5991&hm=8ce7cdb1c7cb2e580abdc950836c5e44b2e54a71d5af6da8f0802537cfd5f878&=&format=webp&width=712&height=948",
     # Add more descriptions and corresponding video URLs as needed
-    "club penguin game holiday party 2010 walkthrough": "https://www.youtube.com/watch?v=YUxU5kqJ76s&ab_channel=CPMemoriesVideos",
+    "club penguin game holiday party 2010 walkthrough": "https://discord.com/channels/@me/1155327631361835119/1200873151018565773",
 }
 
 # Convert video_dict to the desired format
