@@ -31,7 +31,7 @@ function MemoryCard({ memory, onClick }) {
         <img src={"/media/photo/" + filename} alt="Memory" style={{ maxWidth: '100%' }} />
       ))}
     >
-      <Card.Meta title={name} description={context} />
+      <Card.Meta title={name} description={context.substring(0, 200) + "..."} />
     </Card>
   );
 }
