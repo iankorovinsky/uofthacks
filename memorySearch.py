@@ -1,3 +1,4 @@
+import io
 import requests
 import streamlit as st
 import cohere
@@ -133,7 +134,12 @@ def get_image_description(base64_image):
 # Initialize a Python variable to store the text value
 text_value = "..."
 
-
+# Function to encode an image as base64
+def encode_image_webcam(image):
+    image_pil = Image.fromarray(image)
+    buffered = io.BytesIO()
+    image_pil.save(buffered, format="JPEG")  # You can choose a different format if needed
+    return base64.b64encode(buffered.getvalue()).decode('utf-8')
 
 def main():
     st.title("Nostalg.ai")
@@ -169,6 +175,49 @@ def main():
 
             # Display the frame in Streamlit with the RGB color channel order
             st.image(frame_rgb, channels="RGB", use_column_width=True)
+
+            uploaded_file = frame_rgb
+
+            if uploaded_file is not None:
+                # Display the image
+                st.image(uploaded_file, caption='Uploaded Image.', use_column_width=True)
+                st.write("")
+
+                # Encode the image and get the description
+                base64_image = encode_image_webcam(uploaded_file)
+                description_response = get_image_description(base64_image)
+
+                # Display the response
+                st.write("Description of the image:")
+                # st.json(description_response)
+
+                user_prompt = description_response["choices"][0]["message"]["content"]
+                st.write(user_prompt)
+
+                if user_prompt:
+                    # Get the top 3 reranked video descriptions
+                    top_descriptions = rerank_descriptions(user_prompt, video_descriptions)
+                    st.write("Top 3 Relevant Videos:")
+                    columns = st.columns(3)
+
+                    for i, rerank_result in enumerate(top_descriptions, 1):
+                        description = rerank_result.document['text']
+                        relevance_score = rerank_result.relevance_score
+                        video_url = video_dict.get(description, "Video URL not found")
+
+                        # Display the video in a column
+                        with columns[i - 1]:
+                            st.write(f"{i}. Description: {description}")
+                            st.write(f"Relevance: {relevance_score}")
+                            if ".mov" in video_url or ".mp4" in video_url:
+                                st.video(video_url)  # Display the video
+
+                            # Check if video_url contains ".jpg"
+                            elif ".jpg" in video_url:
+                                st.image(video_url)  # Display the image
+
+                            else:
+                                st.write("File retrieval error.")
 
         # Release the webcam and close the Streamlit app when done
         cap.release()
