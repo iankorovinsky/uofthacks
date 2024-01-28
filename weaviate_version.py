@@ -14,6 +14,7 @@ import email_send
 import asyncio
 import nft
 import eyes
+import subprocess
 import json
 import webbrowser
 import time
@@ -128,17 +129,21 @@ def search():
 def upload():
     blob_data = request.files['blob']
     #Step 0: save blob
-
-    # Save the blob as an MP4 file
-    #blob_data = request.form['blob']
     timestamp = time.time()
+    # Save the WebM file
+    webm_filename = 'input_video.webm'
+    blob_data.save(webm_filename)
 
-    with open(f'media/joint/joint_{timestamp}.mp4', 'wb') as file:
-        file.write(blob_data.read())
+    # Convert WebM to MP4
+    mp4_filename = f'media/joint/joint_{timestamp}.mp4'
+    subprocess.run(['ffmpeg', '-i', webm_filename, '-strict', '-2', mp4_filename])
 
-    # Save the blob as an MP3 file
-    with open(f'media/audio/audio_{timestamp}.wav', 'wb') as file:
-        file.write(blob_data.read())
+    # Extract audio to MP3
+    mp3_filename = f'media/audio/audio_{timestamp}.mp3'
+    subprocess.run(['ffmpeg', '-i', webm_filename, '-q:a', '0', '-map', 'a', mp3_filename])
+
+    # Optional: Remove the WebM file if no longer needed
+    os.remove(webm_filename)
     
 
     # Load the video
