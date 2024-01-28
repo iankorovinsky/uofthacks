@@ -191,13 +191,11 @@ const Create = () => {
           <br />
           <Card.Meta title="Location" description={selectedMemory.location} />
           <br />
-          <Card.Meta title="Timestamp" description={selectedMemory.timestamp} />                </Card>
+          <Card.Meta title="Timestamp" description={selectedMemory.timestamp} /> </Card>
         </>
         )}
       </Modal>
- 
-
-    </div>
+</div>
   )
 }
 

@@ -195,6 +195,7 @@ const Camera = ({ isPhoto }) => {
         {flash && <div className="flash-overlay"></div>}
       </div>
       <div className='flex justify-around m-5'>
+        
         {cameraActive ? (
             <Button onClick={stopVideo}>Stop Camera</Button>
         ) : (

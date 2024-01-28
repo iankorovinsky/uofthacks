@@ -1,15 +1,37 @@
 import { Card, Modal } from 'antd';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import memoriesData from '../memories.json';
+import background from './backdrop.png';
+import './Home.css'; // Adjust the path if necessary
+
+
 
 const { Meta } = Card;
+
+/*
+const backgroundImage = {
+  backgroundImage: `url(${background})`,
+  backgroundSize: 'cover',
+  backgroundRepeat: 'repeat-y',
+  backgroundAttachment: 'fixed',
+  height: '100vh', // Ensures the div is at least as tall as the viewport
+  width: '100vw', // Ensures the div is at least as wide as the viewport
+  display: 'flex',
+  flexDirection: 'column',
+  justifyContent: 'center',
+  alignItems: 'center',
+};
+*/
+
+
 function MemoryCard({ memory, onClick }) {
   const { name, transcription, filename, context } = memory;
   const cardStyle = {
     maxWidth: '400px',
     maxHeight: '800px'
   };
+
 
   const cardTitle = (
     <div>
@@ -40,6 +62,37 @@ function MemoryCard({ memory, onClick }) {
 function App() {
   const [modalVisible, setModalVisible] = useState(false);
   const [selectedMemory, setSelectedMemory] = useState(null);
+  const bubbleColors = [
+    'rgba(102, 153, 255, 0.7)', // Shade of Blue
+    'rgba(255, 153, 204, 0.7)', // Shade of Pink
+    'rgba(204, 153, 255, 0.7)', // Shade of Purple
+  ];
+  
+  useEffect(() => {
+    const bubbleArea = document.querySelector('.App');
+    const createBubble = () => {
+      const bubble = document.createElement('span');
+      var size = Math.random() * 60;
+      
+      bubble.style.width = 20 + size + 'px';
+      bubble.style.height = 20 + size + 'px';
+      bubble.style.left = Math.random() * window.innerWidth + 'px';
+      // Choose a random color from the bubbleColors array
+      bubble.style.background = bubbleColors[Math.floor(Math.random() * bubbleColors.length)];
+  
+      bubbleArea.appendChild(bubble);
+  
+      setTimeout(() => {
+        bubble.remove();
+      }, 4000);
+    };
+  
+    // Create bubbles at intervals
+    const bubbleInterval = setInterval(createBubble, 500);
+  
+    return () => clearInterval(bubbleInterval); // Cleanup on component unmount
+  }, []);
+  // end of bubbles
 
   const openModal = (memory) => {
     setSelectedMemory(memory);
@@ -52,6 +105,7 @@ function App() {
   };
 
   return (
+    /* <div className="App" style={backgroundImage}> */
     <div className="App">
       <div className="memory-grid" style={{
           display: 'flex',

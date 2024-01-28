@@ -1,0 +1,17 @@
+@keyframes floatBubble {
+    0% {
+      transform: translateY(0);
+      opacity: 1;
+    }
+    100% {
+      transform: translateY(-100vh);
+      opacity: 0;
+    }
+}
+
+.App span {
+    position: absolute;
+    bottom: 0px;
+    border-radius: 50%;
+    animation: floatBubble 5s ease-in infinite; /* Added the missing duration '5s' */
+}

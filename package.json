@@ -1,6 +1,8 @@
 {
   "dependencies": {
     "@chakra-ui/button": "^2.1.0",
-    "antd": "^5.13.2"
+    "@chakra-ui/react": "^2.8.2",
+    "antd": "^5.13.3",
+    "axios": "^1.6.7"
   }
 }
