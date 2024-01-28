@@ -43,17 +43,17 @@ const Record = () => {
 
   return (
     <div className='flex flex-col items-center m-10'>
-        <Camera isPhoto={false} />
-        <Box as="form" onSubmit={handleSubmit}>
-        `  <Select placeholder="Select person" width="480px" onChange={handleChange}> 
-                <option value="IAN">Ian</option>
-                <option value="LUCY">Lucy</option>
-                <option value="STEPHEN">Stephen</option>
-                <option value="WILLIAM">William</option>
-            </Select>
-            <Button type="submit" colorScheme='green' mt={4}>Submit</Button>`
-        </Box>
-    </div>
+    <Camera isPhoto={false} />
+    <Box as="form" onSubmit={handleSubmit} display="flex" flexDirection="column" alignItems="center" w="100%">
+        <Select placeholder="Select person" width="480px" onChange={handleChange} mb={4}>
+            <option value="IAN">Ian</option>
+            <option value="LUCY">Lucy</option>
+            <option value="STEPHEN">Stephen</option>
+            <option value="WILLIAM">William</option>
+        </Select>
+        <Button type="submit" colorScheme='green'>Submit</Button>
+    </Box>
+</div>
   )
 }
 
