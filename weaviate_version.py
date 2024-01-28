@@ -100,6 +100,23 @@ def search():
     )
     asyncio.run(stream(audio_stream))
     """
+    # Check if files.json exists, if so, delete it
+    if os.path.exists("client/src/display_memories.json"):
+        os.remove("client/src/display_memories.json")
+
+    # Read memories.json
+    with open("client/src/memories.json", "r") as file:
+        data = json.load(file)
+
+    # Filter memories based on filenames
+    filtered_memories = [memory for memory in data["memories"] if memory["filename"] in filenames]
+
+    # Create a new dictionary for files.json with the desired structure
+    files_data = {"display_memories": filtered_memories}
+
+    # Write to files.json
+    with open("client/src/display_memories.json", "w") as file:
+        json.dump(files_data, file, indent=4)
     #step 5: return filename array
     return jsonify({'filenames': filenames, 'summary': cohere_summary})
 
@@ -172,7 +189,7 @@ def upload():
     #step 7: append to json
     print("Starting JSON")
     # Load the existing data
-    with open('memories.json', 'r') as file:
+    with open('client/src/memories.json', 'r') as file:
         data = json.load(file)
 
     # Append new data
@@ -186,7 +203,7 @@ def upload():
     data['memories'].append(new_item)
 
     # Save the updated data
-    with open('memories.json', 'w') as file:
+    with open('client/src/memories.json', 'w') as file:
         json.dump(data, file, indent=4)
     print("Ended JSON")
 
