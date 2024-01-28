@@ -131,21 +131,15 @@ def upload():
     #Step 0: save blob
     timestamp = time.time()
     # Save the WebM file
-    webm_filename = 'input_video.webm'
-    blob_data.save(webm_filename)
 
     # Convert WebM to MP4
-    mp4_filename = f'media/joint/joint_{timestamp}.mp4'
-    subprocess.run(['ffmpeg', '-i', webm_filename, '-strict', '-2', mp4_filename])
+    with open(f'media/joint/joint_{timestamp}.mp4', 'wb') as file:
+            file.write(blob_data.read())
 
     # Extract audio to MP3
-    mp3_filename = f'media/audio/audio_{timestamp}.mp3'
-    subprocess.run(['ffmpeg', '-i', webm_filename, '-q:a', '0', '-map', 'a', mp3_filename])
-
-    # Optional: Remove the WebM file if no longer needed
-    os.remove(webm_filename)
+    with open(f'media/audio/audio_{timestamp}.wav', 'wb') as file:
+        file.write(blob_data.read())
     
-
     # Load the video
     video_capture = cv2.VideoCapture(f'media/joint/joint_{timestamp}.mp4')
 
