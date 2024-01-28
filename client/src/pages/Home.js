@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 
 import memoriesData from '../memories.json';
 
+const { Meta } = Card;
 function MemoryCard({ memory, onClick }) {
   const { name, transcription, filename, context } = memory;
   const cardStyle = {
@@ -68,16 +69,25 @@ function App() {
       >
         {selectedMemory && (
           <>
-            {selectedMemory.filename && (selectedMemory.filename.endsWith('.mp4') ? (
+            
+      <Card cover={selectedMemory.filename && (selectedMemory.filename.endsWith('.mp4') ? (
         <video controls width="100%" style={{height: "300px"}}>
           <source src={"/media/joint/" + selectedMemory.filename} type="video/mp4" />
           Your browser does not support the video tag.
         </video>
       ) : (
         <img src={"/media/photo/" + selectedMemory.filename} alt="Memory" style={{ maxWidth: '100%' }} />
-      ))}
-    
-          </>
+      ))}>
+          <Card.Meta title="Context" description={selectedMemory.context} />
+          <br />
+          <Card.Meta title="Transcription" description={selectedMemory.transcription} />
+          <br />
+          <Card.Meta title="People" description={selectedMemory.people} />
+          <br />
+          <Card.Meta title="Location" description={selectedMemory.location} />
+          <br />
+          <Card.Meta title="Timestamp" description={selectedMemory.timestamp} />                </Card>
+        </>
         )}
       </Modal>
     </div>
