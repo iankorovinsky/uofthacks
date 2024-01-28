@@ -40,7 +40,7 @@ video_dict = {
     
     # william nostalgia
     "juice": "https://lh3.googleusercontent.com/pw/ABLVV85848VP21JSbNvLzP93ere8zA2x5fLNal9JBdg__zz6xLItmBg0OS_1CjqlJCxhVN7Cyp84i-JikRWeTfhBy2DupnLMfcxXmX6A4fR6Xo12yD665IE7vWEuSszlpgo4JJJfoOSejVRmMdKaT_2Z_nmEq-Z9OXr7F_FFNkcYqCMmkPoVFSoYLyDxF25wf_HcbuDq54_VLGKOMVtbqTuwe3ZmWsf_laN-acxKs3R98y8qGEzQBgNK0LQXgt0TnVPvwXTvq36-N8vmbGPhzDfpbNb1GbRbkFqb8rCVaB5FwoA4_UkARPp6ku7ZH9tWwp5BgP_WaY28yed27UfGSYUs0vP38cX7p8cLWaoRQJg4qNz8-VoQXnxmrzYXzzR79hcd0oPbl6FllkrPo2TIeW4u0Cf8OBuUKL4_FU5RSfQ7_dU8hJT71umQt2Iat14lrE5kzBQz5gDs0jesvzmh-zgOckl3YAwu9431gqoSr-fO8ld1MxUSkX9nD-5ah8kn42UfpelcHeDUFjRgI67Yzzwdh5_X_Gv_EUU6g7jh3NEeuDDr1Az4p8IYKO-SPMQkPAuhMeOd59AvN57nncFa-iO6P1p9foXn5IQNlzJlXcZdQzMrONoZQJpuYa5B3E3PljHz0HirKDYbqbHpszQRQSeHBJk-F2vgmwLcGYL2-P4gqGt7ub_EwMfUrtm9IjN1QHBgCP9W5WPY70-aS6uHABI6ggUf89QY87V78J8F3ln3zH3Ke3-gvfSGb6wa5u2jC6EDzUSyKa9rBd9AAoHEIOspxOppofmllDOh6o7lxlFRKBBk4QMk5FiV6ZGwdidOG0rGsLelUGOvPqfCCy3uEhLa7BQFBbh6pm5EiY82ULwhfykPmy4VXJ0ZLFxRzrFvgwkyclti9AcipsiDGOhEZCwCSPGvJd0j56eZa2KaAsSby3giy8RpXZiTwaADJF3c3usY-ri9WUT72KRuXMV-gsZo4nTGOpO_b9r8-Dx_Az9gTxn2xKapcFdFgGs--mucS68jTvK6vKmXXecBpdQiF43kU1E44hAMjpsomdeSp7JtKpcYG_7jI1VlUZ3SHdO1uDIJnOrl-mRJZS5nU-zupD6Ols4OV6VXNK0g1vgeJvNUdEE=w804-h1430-s-no-gm?authuser=2",
-    "teddy bear hackathon": "https://media.discordapp.net/attachments/1195521115926302771/1196488559801139281/IMG_7464.jpg?ex=65c10a4e&is=65ae954e&hm=8060ecec870d0b7acaefc9d158005d7fe28088dd81912fa612d882b866baedb7&=&format=webp&width=1265&height=948",
+    "teddy bear hackathon. cute teddy bear": "https://media.discordapp.net/attachments/1195521115926302771/1196488559801139281/IMG_7464.jpg?ex=65c10a4e&is=65ae954e&hm=8060ecec870d0b7acaefc9d158005d7fe28088dd81912fa612d882b866baedb7&=&format=webp&width=1265&height=948",
  
     # Add more descriptions and corresponding video URLs as needed
     "club penguin game holiday party 2010 walkthrough": "https://discord.com/channels/@me/1155327631361835119/1200873151018565773",
@@ -64,8 +64,8 @@ video_dict = {
     "Windows XP": "https://cdn.discordapp.com/attachments/807724582705954857/1200883802302591096/it_s_2005_you_Startup_a_Windows_XP_professional.mp4?ex=65c7cd31&is=65b55831&hm=49cdd6043025ca32c97e14c3b4279e95f5564df7e16f36aa71485a982fcd52a5&",
 
     # plushies
-    "Lucy got her first large squishmellow!": "https://media.discordapp.net/attachments/807724582705954857/1200886252363337738/IMG_0967_Original.jpg?ex=65c7cf79&is=65b55a79&hm=878039b5949b2678415c0b23a88a64fc0f456b453ca28b8febbe075cf7d4a5da&=&format=webp&width=1712&height=1284",
-    "Family trip to China (got a baymax plush!)": "https://media.discordapp.net/attachments/807724582705954857/1200886253554520186/IMG_4718_Original.jpg?ex=65c7cf7a&is=65b55a7a&hm=e5b1658d91375a085a6ce42d1bb5e9170fb12ed2623b3f58447e61ff45f47a98&=&format=webp&width=1424&height=1284",
+    "Lucy got her first large squishmellow! Very cute plushie teddy bear.": "https://media.discordapp.net/attachments/807724582705954857/1200886252363337738/IMG_0967_Original.jpg?ex=65c7cf79&is=65b55a79&hm=878039b5949b2678415c0b23a88a64fc0f456b453ca28b8febbe075cf7d4a5da&=&format=webp&width=1712&height=1284",
+    "Family trip to China (got a baymax plush!) Cute teddy": "https://media.discordapp.net/attachments/807724582705954857/1200886253554520186/IMG_4718_Original.jpg?ex=65c7cf7a&is=65b55a7a&hm=e5b1658d91375a085a6ce42d1bb5e9170fb12ed2623b3f58447e61ff45f47a98&=&format=webp&width=1424&height=1284",
     "Teddy bear plushie photo shoot": "https://media.discordapp.net/attachments/807724582705954857/1200886254003302600/IMG_0124_Original.jpg?ex=65c7cf7a&is=65b55a7a&hm=9fd110faebfa11bfa1cf6cba5033d321664c5eb1d90c686fac74dddededc1c41&=&format=webp&width=1712&height=1284",
     "Stuffed animals from Secret Santa": "https://media.discordapp.net/attachments/807724582705954857/1200888331869892618/IMG_3648_Original.jpg?ex=65c7d169&is=65b55c69&hm=cbbf07393b386533119394fe142bd5ef1299654fe50aa0b6c19c142b3a5d48cb&=&format=webp&width=962&height=1282",
     # Add more descriptions and corresponding video URLs as needed
@@ -82,7 +82,7 @@ def rerank_descriptions(prompt, descriptions):
         query=prompt,
         documents=descriptions,
         top_n=3,  # Fetching top 3 relevant descriptions
-        model="rerank-multilingual-v2.0"
+        model="rerank-english-v2.0"
     )
     return response
 
