@@ -1,22 +1,20 @@
 {
     "display_memories": [
         {
-            "name": "Memory with Ian, #1706339168.5020163",
-            "transcription": "Thank you. 1, 2, 3, 4, 5.",
-            "context": "The image shows a person in front of a black backdrop. The individual has chin-length hair and is wearing a dark-colored hoodie with some text on it, although the text is not fully legible in this image. They appear to be looking slightly downward, and there might be headphones around the person's neck based on the visible part of what could be a headphone band or strap. The lighting is a bit dim, and the image quality is grainy, which suggests it may have been taken with a low-resolution camera or webcam.",
+            "name": "Memory with Ian, #1",
+            "transcription": "",
+            "context": "The image shows a group of individuals dressed in white clothing performing what appears to be a dance or some sort of synchronized movement in an outdoor setting. They are gathered under an archway structure with lights and the sign reads \"KENNY'S COVE.\" The environment looks like a pier or boardwalk by the ocean, and there is a boat visible on the right. The sky is clear and blue, suggesting good weather. The exact context of the gathering is not clear from the image, but it possibly could be a celebration, performance, or a scene from a film or music video. The photo is not very sharp, possibly indicating motion or a low-resolution source.",
             "people": "Ian",
             "location": "Toronto Canada",
-            "filename": "joint_1706339168.5020163.mp4",
-            "timestamp": "1706339168.5020163"
+            "filename": "joint_1.mp4"
         },
         {
-            "name": "Memory with Ian, #1706339168.5020163",
-            "transcription": "Thank you. 1, 2, 3, 4, 5.",
-            "context": "The image shows a person in front of a black backdrop. The individual has chin-length hair and is wearing a dark-colored hoodie with some text on it, although the text is not fully legible in this image. They appear to be looking slightly downward, and there might be headphones around the person's neck based on the visible part of what could be a headphone band or strap. The lighting is a bit dim, and the image quality is grainy, which suggests it may have been taken with a low-resolution camera or webcam.",
-            "people": "Ian",
+            "name": "Memory with None, #1",
+            "transcription": "",
+            "context": "The image shows a sign with the wording \"KENNY'S COVE\" illuminated by a series of light bulbs around its edge. The sign appears to be at the entrance of a pier or a similar waterfront location. Below the sign, there is a group of people dressed in white attire. They seem to be engaged in some sort of activity, possibly dancing or participating in an event or performance. Due to the motion blur, it indicates movement and action in the scene. To the right of the image, you can see a small portion of a white boat. The background includes a clear blue sky and an expansive body of water, hinting that the location is likely coastal. The overall atmosphere of the image suggests a lively, festive occasion, possibly related to a beach or seaside event.",
+            "people": "None",
             "location": "Toronto Canada",
-            "filename": "joint_1706429678.9420748.mp4",
-            "timestamp": "1706339168.5020163"
+            "filename": "joint_1.mp4"
         }
     ]
 }
