@@ -42,9 +42,9 @@ def get_image_description(base64_image):
         ],
         "max_tokens": 300
     }
-
-    response = requests.post("https://api.openai.com/v1/chat/completions", headers=headers, json=payload)
-    return response.json()
+    print("vbbbb")
+    # response = requests.post("https://api.openai.com/v1/chat/completions", headers=headers, json=payload)
+    return {"message": "hello"}
 
 def main():
     st.title("Image Description using GPT-4 Vision")

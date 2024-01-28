@@ -20,8 +20,7 @@ import time
 import cv2
 from elevenlabs import generate, stream, set_api_key
 from threading import Thread
-
-
+import subprocess
 
 """
 
@@ -116,18 +115,22 @@ def upload():
     # Save the blob as an MP4 file
     #blob_data = request.form['blob']
     timestamp = time.time()
+
     with open(f'media/joint/joint_{timestamp}.mp4', 'wb') as file:
-        file.write(blob_data)
+        file.write(blob_data.read())
 
     # Save the blob as an MP3 file
     with open(f'media/audio/audio_{timestamp}.wav', 'wb') as file:
-        file.write(blob_data)
+        file.write(blob_data.read())
+    
 
     # Load the video
     video_capture = cv2.VideoCapture(f'media/joint/joint_{timestamp}.mp4')
 
     # Read the first frame
     success, frame = video_capture.read()
+
+    print("got here")
 
     if success:
         # Save the first frame as an image
@@ -137,7 +140,7 @@ def upload():
     
     #Step 1: get timestamp + people
     filename = f"joint_{timestamp}.mp4"
-    person = request.files['person']
+    person = request.form['person']
     people = []
     people.append(person)
     #Step 2: open image and transcribe

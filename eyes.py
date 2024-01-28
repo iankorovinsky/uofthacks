@@ -42,7 +42,7 @@ def main(timestamp):
     }
 
     response = requests.post("https://api.openai.com/v1/chat/completions", headers=headers, json=payload)
-
+    
     text = response.json()["choices"][0]["message"]["content"]
     return text
 # OpenAI API Key
