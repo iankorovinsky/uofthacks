@@ -46,55 +46,57 @@
     </div>
     
   
-    <div id="profile"></div>
+     <!-- Profile container with inline styles for circular icon at bottom left -->
+  <div id="profile" style="position: fixed; bottom: 9px; left: 9px; display: none; align-items: center; justify-content: center; background-color: white; border-radius: 8px; padding: 9px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); max-width: 300px;">
+    <!-- Profile content will be inserted by the script below -->
+  </div>
 
-    <script src="https://cdn.auth0.com/js/auth0-spa-js/2.0/auth0-spa-js.production.js"></script>
-    <script>auth0.createAuth0Client({
+  <!-- Auth0 script -->
+  <script src="https://cdn.auth0.com/js/auth0-spa-js/2.0/auth0-spa-js.production.js"></script>
+  <script>
+    auth0.createAuth0Client({
       domain: "dev-56vft1xoyo3s52an.us.auth0.com",
       clientId: "6iuNjiEwwMJx6EbmKXiDKhASFL7QbDhA",
       authorizationParams: {
         redirect_uri: window.location.origin
       }
     }).then(async (auth0Client) => {
-      // Assumes a button with id "login" in the DOM
       const loginButton = document.getElementById("login");
-    
       loginButton.addEventListener("click", (e) => {
         e.preventDefault();
         auth0Client.loginWithRedirect();
       });
-    
+
       if (location.search.includes("state=") && 
           (location.search.includes("code=") || 
           location.search.includes("error="))) {
         await auth0Client.handleRedirectCallback();
         window.history.replaceState({}, document.title, "/");
       }
-    
-      // Assumes a button with id "logout" in the DOM
+
       const logoutButton = document.getElementById("logout");
-    
       logoutButton.addEventListener("click", (e) => {
         e.preventDefault();
         auth0Client.logout();
       });
-    
+
       const isAuthenticated = await auth0Client.isAuthenticated();
       const userProfile = await auth0Client.getUser();
-    
-      // Assumes an element with id "profile" in the DOM
       const profileElement = document.getElementById("profile");
-    
+
       if (isAuthenticated) {
-        profileElement.style.display = "block";
+        profileElement.style.display = 'flex';
         profileElement.innerHTML = `
-                <p>${userProfile.name}</p>
-                <p>${userProfile.email}</p>
-                <img src="${userProfile.picture}" />
-              `;
+          <img src="${userProfile.picture}" alt="Profile Picture" style="width: 50px; height: 50px; border-radius: 50%; object-fit: cover; margin-right: 8px;" />
+          <div>
+            <p style="margin: 0; font-size: 0.8rem; font-weight: bold;">${userProfile.name}</p>
+            <p style="margin: 0; font-size: 0.7rem;">${userProfile.email}</p>
+          </div>
+        `;
       } else {
-        profileElement.style.display = "none";
+        profileElement.style.display = 'none';
       }
-    });</script>
+    });
+  </script>
   </body>
 </html>
