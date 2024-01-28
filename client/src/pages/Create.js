@@ -18,14 +18,17 @@ const Create = () => {
 
     const handleSearch = (searchTerm) => {
         console.log(searchTerm)
-        setSearchValue(searchTerm)
-        console.log(imageSrc)
+        setText(searchTerm)
     };
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        console.log(selectedValue)
-        console.log(imageSrc)
+
+        const formData = new FormData();
+        formData.append('imagetext', text);
+
+        const res = callSearch(formData)
+        console.log(res)
     };
 
     const handleChange = (event) => {
@@ -77,24 +80,35 @@ const Create = () => {
     };
 
     const callSearch = async (req) => {
-        const res = await fetch('http://127.0.0.1:2000/api/search', {
+        const res = await fetch(' http://127.0.0.1:2000/api/search', {
             method: 'POST',
-            headers: {
-              'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(req)
+            body: req
         });
 
         const res_data = res.json()
+
+        console.log(res_data)
 
         return res_data
     };
 
   return (
+<<<<<<< HEAD
     <div className='flex flex-col items-center m-10'>
         <SearchBar onSearch={handleSearch} />
         <Camera isPhoto={true} />
 
+=======
+    <div className='flex flex-col items-center'>
+        <div className='flex flex-col items-center mt-10 mx-10'>
+            <SearchBar onSearch={handleSearch} />
+            <Camera isPhoto={true} />
+        </div>
+        <Box as="form" onSubmit={handleSubmit} className='mr-96'>
+            <Button type="submit" colorScheme="green" mt={4}>Submit</Button>`
+        </Box>
+ 
+>>>>>>> d7d57f347a4efbd244abf278deb3301c2dea6c95
 
     </div>
   )

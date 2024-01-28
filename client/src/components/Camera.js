@@ -3,6 +3,7 @@ import { Button } from "@chakra-ui/button"
 
 import './component-styles/Camera.css'
 import { useImageContext } from './ImageContext';
+import { useFormContext } from './FormContext';
 
 const Camera = ({ isPhoto }) => {
   const videoRef = useRef(null);
@@ -16,6 +17,7 @@ const Camera = ({ isPhoto }) => {
   const [mediaRecorder, setMediaRecorder] = useState(null);
 
   const { setImageSrc } = useImageContext();
+  const { setFormSrc } = useFormContext();
 
   const startVideo = async () => {
     try {
@@ -118,14 +120,11 @@ const Camera = ({ isPhoto }) => {
 
   const uploadVideo = async (videoBlob) => {
     const formData = new FormData();
-    formData.append('video', videoBlob, 'video.webm');
+    formData.append('blob', videoBlob);
 
-    for (let [key, value] of formData.entries()) {
-        console.log(`${key}:`, value);
-    }
-
-    console.log(typeof formData)
+    setFormSrc(formData)
   };
+
 
   const savePhotoLocally = async (blob) => {
     if ('showSaveFilePicker' in window) {

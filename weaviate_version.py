@@ -1,8 +1,10 @@
 import os
 from flask import Flask, request, jsonify
 import cohere
-from flask_cors import CORS
+from flask_cors import CORS, cross_origin
 from dotenv import load_dotenv
+load_dotenv()
+os.environ["IMAGEIO_FFMPEG_EXE"] = "/usr/bin/ffmpeg"
 import weaviate
 import transcription
 import recorder as rc
@@ -45,7 +47,7 @@ client = weaviate.Client(
 print("Starting setup...")
 
 app = Flask(__name__)
-CORS(app, origins='http://localhost:2000')
+CORS(app, resources={r"/api/*": {"origins": "*"}})
 co = cohere.Client(os.environ['COHERE_API_KEY'])
 
 API_KEY = os.environ['GEOLOCATION_API_KEY']
@@ -62,6 +64,7 @@ CORE APIS CALLED BY FRONTEND
 #Takes in an image description
 #Returns a list of file_names
 @app.route('/api/search', methods=["POST", "GET"])
+@cross_origin()
 def search():
     #step 1: query
     imagetext = request.form['imagetext']
@@ -86,45 +89,32 @@ def search():
         summary.append(r.get("location"))  
            
     cohere_summary = co.summarize(text=' '.join(summary))
-
+    print("---")
+    cohere_summary = cohere_summary.summary
+    print(cohere_summary)
     #step 4: tts
-
+    """
     audio_stream = generate(
         text=cohere_summary,
         voice="Gigi",
         stream=True
     )
     asyncio.run(stream(audio_stream))
+    """
     #step 5: return filename array
-    return jsonify({'results': filenames})
+    return jsonify({'filenames': filenames, 'summary': cohere_summary})
 
 #Takes in a timestamp and a person string
 #Outputs success JSON
 
-def run_asyncio_task(task):
-    asyncio.run(task)
-
-@app.route('/api/voicing', methods=["POST", "GET"])
-def voicing():
-    audio_stream = generate(
-        text="My name is William and obviously you can get a good job with an Ivey Degree",
-        voice="Gigi",
-        stream=True
-    )
-
-    # Start the asyncio task in a new thread
-    thread = Thread(target=run_asyncio_task, args=(stream(audio_stream),))
-    thread.start()
-
-    # Return response without waiting for the thread to finish
-    return jsonify({'results': "woop woop"})
 
 @app.route('/api/upload', methods=["POST", "GET"])
 def upload():
+    blob_data = request.files['blob']
     #Step 0: save blob
 
     # Save the blob as an MP4 file
-    blob_data = request.form['blob']
+    #blob_data = request.form['blob']
     timestamp = time.time()
     with open(f'media/joint/joint_{timestamp}.mp4', 'wb') as file:
         file.write(blob_data)
@@ -147,7 +137,7 @@ def upload():
     
     #Step 1: get timestamp + people
     filename = f"joint_{timestamp}.mp4"
-    person = request.form['person']
+    person = request.files['person']
     people = []
     people.append(person)
     #Step 2: open image and transcribe
@@ -202,7 +192,7 @@ def upload():
     print("Starting email")
     email(people, link)
     print("Ended email")
-    return jsonify({'': 'success'})
+    return jsonify({'response': 'success'})
 
 
 """
@@ -278,7 +268,7 @@ def query(text):
         .do()
     )
     print(response)
-    return responses
+    return response
 
 @app.route('/api/transcribe', methods=["POST", "GET"])
 def transcribe(timestamp):

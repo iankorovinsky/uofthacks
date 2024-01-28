@@ -5,6 +5,7 @@ import { AnimatePresence } from 'framer-motion'
 import { ChakraProvider } from '@chakra-ui/react';
 
 import { ImageProvider } from './components/ImageContext';
+import { FormProvider } from './components/FormContext';
  
 import Navbar from './components/Navbar'
 import Home from './pages/Home'
@@ -17,6 +18,7 @@ const App = () => {
     <div className="App bg-white">
     <ChakraProvider>
       <ImageProvider>
+      <FormProvider>
         <BrowserRouter>
             <Suspense fallback={<div>Page Loading...</div>}>
             <Navbar />
@@ -30,6 +32,7 @@ const App = () => {
             </AnimatePresence>
             </Suspense>
         </BrowserRouter>
+        </FormProvider>
       </ImageProvider>
     </ChakraProvider>
   </div>
