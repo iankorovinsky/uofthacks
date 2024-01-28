@@ -129,22 +129,25 @@ def search():
 def upload():
     
     blob_data = request.files['blob']
-    #Step 0: save blob
+
     timestamp = time.time()
     # Save the WebM file
-    webm_filename = 'input_video.webm'
-    blob_data.save(webm_filename)
 
     # Convert WebM to MP4
-    mp4_filename = f'media/joint/joint_{timestamp}.mp4'
-    subprocess.run(['ffmpeg', '-i', webm_filename, '-strict', '-2', mp4_filename])
+    with open(f'media/joint/joint_{timestamp}.mp4', 'wb') as file:
+            file.write(blob_data.read())
+    with open(f'media/joint/joint_{timestamp}.mp4', 'wb') as file:
+            file.write(blob_data.read())
 
     # Extract audio to MP3
-    mp3_filename = f'media/audio/audio_{timestamp}.mp3'
-    subprocess.run(['ffmpeg', '-i', webm_filename, '-q:a', '0', '-map', 'a', mp3_filename])
+    with open(f'media/audio/audio_{timestamp}.wav', 'wb') as file:
+        file.write(blob_data.read())
+    
+    # Load the video
+    video_capture = cv2.VideoCapture(f'media/joint/joint_{timestamp}.mp4')
 
-    # Optional: Remove the WebM file if no longer needed
-    os.remove(webm_filename)
+    # Read the first frame
+    success, frame = video_capture.read()
     
     # Load the video
     video_capture = cv2.VideoCapture(f'media/joint/joint_{timestamp}.mp4')
@@ -308,7 +311,8 @@ def query(text):
 @app.route('/api/transcribe', methods=["POST", "GET"])
 def transcribe(timestamp):
     filepath = f"audio_{timestamp}.wav"
-    text = transcription.transcriber(filepath)
+    # text = transcription.transcriber(filepath)
+    text = ''
     return text
 
 @app.route('/api/recorder', methods=["POST", "GET"])

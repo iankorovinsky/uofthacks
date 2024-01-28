@@ -91,9 +91,10 @@ const Navbar = () => {
                     <div>
                         {links.map(({ name, link, priority, id }) => 
                             <Link key={name}
-                                className={`${priority ? "text-purple-900 hover:bg-purple-900 hover:text-white text-center border border-solid border-purple-900 mt-1 lg:mt-0 lg:ml-1" : "text-white text-2xl hover:bg-gray-200/25 hover:text-gray-200"} p-2 lg:px-4 lg:mx-2 rounded duration-300 transition-colors ${
-                                    pathname === link ? "font-bold text-pink-200" : ""
-                                  }`}// Fixed the comparison to pathname === link
+                            className={`${priority ? "text-purple-900 hover:bg-purple-900 hover:text-pink-200 text-center border border-solid border-purple-900 mt-1 lg:mt-0 lg:ml-1" : "text-white text-2xl hover:bg-gray-200/25 hover:text-pink-200"} p-2 lg:px-4 lg:mx-2 rounded duration-300 transition-colors ${
+                                pathname === link ? "text-pink-200 font-bold" : ""
+                            }`}
+                            
                                 to={link}>
                                 {name}
                             </Link>

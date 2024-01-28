@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Card, Modal } from 'antd';
 import Camera from '../components/Camera';
 import SearchBar from '../components/SearchBar';
-
+import './Record.css'; 
 import { Select, Button, Box, form } from '@chakra-ui/react';
 import { useImageContext } from '../components/ImageContext';
 
@@ -45,6 +45,37 @@ function MemoryCard({ memory, onClick }) {
   
 
 const Create = () => {
+  const bubbleColors = [
+    'rgba(102, 153, 255, 0.7)', // Shade of Blue
+    'rgba(255, 153, 204, 0.7)', // Shade of Pink
+    'rgba(204, 153, 255, 0.7)', // Shade of Purple
+  ];
+  
+  useEffect(() => {
+    const bubbleArea = document.querySelector('.App');
+    const createBubble = () => {
+      const bubble = document.createElement('span');
+      var size = Math.random() * 60;
+      
+      bubble.style.width = 20 + size + 'px';
+      bubble.style.height = 20 + size + 'px';
+      bubble.style.left = Math.random() * window.innerWidth + 'px';
+      // Choose a random color from the bubbleColors array
+      bubble.style.background = bubbleColors[Math.floor(Math.random() * bubbleColors.length)];
+  
+      bubbleArea.appendChild(bubble);
+  
+      setTimeout(() => {
+        bubble.remove();
+      }, 4000);
+    };
+  
+    // Create bubbles at intervals
+    const bubbleInterval = setInterval(createBubble, 500);
+  
+    return () => clearInterval(bubbleInterval); // Cleanup on component unmount
+  }, []);
+  // end of bubbles
     const [modalVisible, setModalVisible] = useState(false);
     const [selectedMemory, setSelectedMemory] = useState(null);
 
@@ -65,7 +96,7 @@ const Create = () => {
 
     const { imageSrc } = useImageContext();
 
-    const apiKey = "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"
+    const apiKey = "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"
 
     const handleSearch = (searchTerm) => {
         console.log(searchTerm)
@@ -114,7 +145,11 @@ const Create = () => {
           const response_data = response.data
           
           const content = response_data["choices"][0]["message"]["content"]
+          console.log(content)
           setText(content)
+
+          console.log("handling submit")
+          handleSubmit()
 
           const req = {
             form: { 
@@ -149,8 +184,16 @@ const Create = () => {
             <SearchBar onSearch={handleSearch} />
             <Camera isPhoto={true} />
         </div>
-        <Box as="form" onSubmit={handleSubmit} className='mr-96'>
-            <Button type="submit" colorScheme="green" mt={4}>Submit</Button>`
+        <Box as="form" onSubmit={handleSubmit} className='mr-96'> 
+        <Button
+        type="submit"
+        style={{
+            backgroundColor: '#6f86d6', // A vibrant blue shade
+            color: 'white' // Assuming you want the text color to be white
+        }}
+        >
+        Submit
+        </Button>
         </Box>
 
         <div className="memory-grid" style={{
