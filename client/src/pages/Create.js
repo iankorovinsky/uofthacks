@@ -96,7 +96,7 @@ const Create = () => {
 
     const { imageSrc } = useImageContext();
 
-    const apiKey = "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"
+    const apiKey = "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"
 
     const handleSearch = (searchTerm) => {
         console.log(searchTerm)
@@ -145,7 +145,11 @@ const Create = () => {
           const response_data = response.data
           
           const content = response_data["choices"][0]["message"]["content"]
+          console.log(content)
           setText(content)
+
+          console.log("handling submit")
+          handleSubmit()
 
           const req = {
             form: { 
