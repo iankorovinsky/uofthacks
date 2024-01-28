@@ -1,6 +1,10 @@
+import requests
 import streamlit as st
 import cohere
-
+import cv2
+import streamlit as st
+import requests
+import base64
 import os
 from dotenv import load_dotenv
 from cohere.responses.chat import StreamEvent
@@ -87,7 +91,44 @@ def generate_chat_response(message, documents):
     response = co.chat(model="command", message=message, documents=documents)
     return response.text
 
+api_key = os.getenv('OPENAI_API_KEY')
 
+# Function to encode the uploaded image
+def encode_image(uploaded_file):
+    # Convert the file to bytes and encode it in base64
+    return base64.b64encode(uploaded_file.getvalue()).decode('utf-8')
+
+# Function to get the image description from OpenAI's API
+def get_image_description(base64_image):
+    headers = {
+        "Content-Type": "application/json",
+        "Authorization": f"Bearer {api_key}"
+    }
+
+    payload = {
+        "model": "gpt-4-vision-preview",
+        "messages": [
+            {
+                "role": "user",
+                "content": [
+                    {
+                        "type": "text",
+                        "text": "What's in this image?"
+                    },
+                    {
+                        "type": "image_url",
+                        "image_url": {
+                            "url": f"data:image/jpeg;base64,{base64_image}"
+                        }
+                    }
+                ]
+            }
+        ],
+        "max_tokens": 300
+    }
+    response = requests.post("https://api.openai.com/v1/chat/completions", headers=headers, json=payload)
+    print(response.json())
+    return response.json()
 
 # Initialize a Python variable to store the text value
 text_value = "..."
@@ -97,8 +138,52 @@ text_value = "..."
 def main():
     st.title("Find Nostalgic Videos")
     
-    user_prompt = st.text_input("Enter your nostalgic prompt (e.g., '90s music', 'old cartoons', etc.):")
-    if st.button('Find Videos'):
+    
+
+    # User input
+    user_message = st.sidebar.text_input("Chat with your memories: ")
+
+    # Initialize the webcam
+    cap = cv2.VideoCapture(0)
+
+    # Check if the webcam is opened successfully
+    if not cap.isOpened():
+        st.error("Error: Webcam not found or cannot be accessed.")
+    else:
+        if st.button("Take Image"):
+            # Read a frame from the webcam
+            ret, frame = cap.read()
+
+            # Check if the frame was read successfully
+            if not ret:
+                st.error("Error: Failed to read a frame from the webcam.")
+
+            # Convert the frame from BGR to RGB color channel order
+            frame_rgb = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
+
+            # Display the frame in Streamlit with the RGB color channel order
+            st.image(frame_rgb, channels="RGB", use_column_width=True)
+
+        # Release the webcam and close the Streamlit app when done
+        cap.release()
+    
+    uploaded_file = st.file_uploader("Choose an image...", type=["jpg", "jpeg", "png"])
+
+    if uploaded_file is not None:
+        # Display the image
+        st.image(uploaded_file, caption='Uploaded Image.', use_column_width=True)
+        st.write("")
+
+        # Encode the image and get the description
+        base64_image = encode_image(uploaded_file)
+        description_response = get_image_description(base64_image)
+
+        # Display the response
+        st.write("Description of the image:")
+        st.json(description_response)
+
+        user_prompt = description_response["choices"][0]["message"]["content"]
+
         if user_prompt:
             # Get the top 3 reranked video descriptions
             top_descriptions = rerank_descriptions(user_prompt, video_descriptions)
@@ -123,9 +208,6 @@ def main():
 
                     else:
                         st.write("File retrieval error.")
-
-    # User input
-    user_message = st.sidebar.text_input("Chat with your memories: ")
 
     # Chat history
     chat_history = []
@@ -155,6 +237,33 @@ def main():
 
             # Add chatbot response to chat history
             chat_history.append({"role": "chatbot", "message": response})
+
+    user_prompt = st.text_input("Enter your nostalgic prompt (e.g., '90s music', 'old cartoons', etc.):")
+    if st.button('Find Videos'):
+        if user_prompt:
+            # Get the top 3 reranked video descriptions
+            top_descriptions = rerank_descriptions(user_prompt, video_descriptions)
+            st.write("Top 3 Relevant Videos:")
+            columns = st.columns(3)
+
+            for i, rerank_result in enumerate(top_descriptions, 1):
+                description = rerank_result.document['text']
+                relevance_score = rerank_result.relevance_score
+                video_url = video_dict.get(description, "Video URL not found")
+
+                # Display the video in a column
+                with columns[i - 1]:
+                    st.write(f"{i}. Description: {description}")
+                    st.write(f"Relevance: {relevance_score}")
+                    if ".mov" in video_url or ".mp4" in video_url:
+                        st.video(video_url)  # Display the video
+
+                    # Check if video_url contains ".jpg"
+                    elif ".jpg" in video_url:
+                        st.image(video_url)  # Display the image
+
+                    else:
+                        st.write("File retrieval error.")
 
 
 if __name__ == "__main__":
