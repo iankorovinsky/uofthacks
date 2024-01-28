@@ -2,7 +2,7 @@ import cv2
 
 def get_photo(timestamp):
     # Load the video file
-    video_path = f'media/video/output_video_{timestamp}.avi'  # Replace with your .avi file path
+    video_path = f'media/joint/joint_{timestamp}.avi'  # Replace with your .avi file path
     cap = cv2.VideoCapture(video_path)
 
     if not cap.isOpened():

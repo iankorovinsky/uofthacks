@@ -12,6 +12,8 @@ import email_send
 import asyncio
 import nft
 import eyes
+import json
+import webbrowser
 
 """
 
@@ -36,7 +38,7 @@ client = weaviate.Client(
 print("Starting setup...")
 
 app = Flask(__name__)
-CORS(app, origins='http://localhost:3000')
+CORS(app, origins='http://localhost:2000')
 co = cohere.Client(os.environ['COHERE_API_KEY'])
 
 API_KEY = os.environ['GEOLOCATION_API_KEY']
@@ -65,20 +67,62 @@ def search():
 def upload():
     #Step 1: get timestamp + people
     timestamp = request.form['timestamp']
+    filename = f"joint_{timestamp}.mp4"
     person = request.form['person']
     people = []
     people.append(person)
     #Step 2: open image and transcribe
-    image_text = vision(timestamp)
+    context = vision(timestamp)
+    print("context:")
+    print(context)
     #Step 3: transcription
-    audio_text = transcribe(timestamp)
+    transcription = transcribe(timestamp)
+    print("transcription:")
+    print(transcription)
     #step 4: location
-    location = 
+    location = get_location()
+    print(location)
     #step 5: embed
-    
+    print("Adding embedding")
+    text = add(filename, transcription, context, person, location)
+    print("Added embedding")
     #step 6: nft
+    print("Starting NFT")
+    name = "Memory with " + person + ", #" + str(timestamp)
+    description = context
+    imageName = filename
+    link = nonfungibletokens(name, description, imageName)
+    link = json.loads(link)["transaction_details"]["blockExplorer"]
+    print(link)
+    print("Ended NFT")
+
+    webbrowser.open_new_tab(link)
     #step 7: append to json
+    print("Starting JSON")
+    # Load the existing data
+    with open('memories.json', 'r') as file:
+        data = json.load(file)
+
+    # Append new data
+    new_item = {"name": name,
+        "transcription": transcription,
+        "context": context,
+        "people": person,
+        "location": location,
+        "filename": filename,
+        "timestamp": timestamp}
+    data['memories'].append(new_item)
+
+    # Save the updated data
+    with open('memories.json', 'w') as file:
+        json.dump(data, file, indent=4)
+    print("Ended JSON")
+
+
     #step 8: email
+    print("Starting email")
+    email(people, link)
+    print("Ended email")
     return jsonify({'results': 'success'})
 
 
@@ -97,15 +141,8 @@ def get_location():
     print(data)
 
     if response.status_code == 200:
-        return jsonify({
-            'ip': user_ip,
-            'country': data.get('country_name'),
-            'state': data.get('state_prov'),
-            'city': data.get('city'),
-            'latitude': data.get('latitude'),
-            'longitude': data.get('longitude'),
-            'organization': data.get('organization')
-        })
+        location = data.get('city') + " " + data.get('country_name')
+        return location
     else:
         return jsonify({'error': 'Could not get location'}), 500
 
@@ -134,15 +171,15 @@ def weaviateinit():
 
 
 @app.route('/api/add', methods=["POST", "GET"])
-def add():
+def add(filename, transcription, context, people, location):
     client.batch.configure(batch_size=10)
     with client.batch as batch:
         properties = {
-            "file_name": request.form['filename'],
-            "transcription": request.form['transcription'],
-            "video_context": request.form['context'],
-            "people": request.form['people'],
-            "location": request.form['location']
+            "file_name": filename,
+            "transcription": transcription,
+            "video_context": context,
+            "people": people,
+            "location": location
         }
         batch.add_data_object(
             data_object=properties,
@@ -181,14 +218,14 @@ def recorder():
     return jsonify({'results': timestamp})
 
 @app.route('/api/email', methods=["POST", "GET"])
-def email():
-    email_send.email_request(request.form['names'], request.form['link'])
+def email(name, link):
+    email_send.email_request(name, link)
     return jsonify({'results': 'success'})
 
 @app.route('/api/nft', methods=["POST", "GET"])
-def nonfungibletokens():
-    text = nft.mintNFT(request.form['name'], request.form['description'], request.form['imageUrl'])
-    return jsonify({'results': text})
+def nonfungibletokens(name, description, imageName):
+    text = asyncio.run(nft.mintNFT(name, description, imageName))
+    return text
 
 if __name__ == '__main__':
     app.run(debug=True, port=2000)
