@@ -1,17 +1,19 @@
 @keyframes floatBubble {
-    0% {
+  0% {
       transform: translateY(0);
       opacity: 1;
-    }
-    100% {
-      transform: translateY(-100vh);
+  }
+  100% {
+      transform: translateY(-90vh); /* Adjusted to move almost to the top */
       opacity: 0;
-    }
+  }
 }
 
 .App span {
-    position: absolute;
-    bottom: 0px;
-    border-radius: 50%;
-    animation: floatBubble 5s ease-in infinite; /* Added the missing duration '5s' */
+  position: absolute;
+  bottom: 50%; /* Center vertically */
+  left: 50%;  /* Center horizontally */
+  transform: translate(-50%, 0); /* Center the bubble */
+  border-radius: 50%;
+  animation: floatBubble 5s ease-in infinite;
 }
