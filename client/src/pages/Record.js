@@ -22,7 +22,7 @@ const Record = () => {
 
   return (
     <div className='flex flex-col items-center m-10'>
-        <Camera />
+        <Camera isPhoto={false} />
         <Box as="form" onSubmit={handleSubmit}>
         `  <Select placeholder="Select person" width="480px" onChange={handleChange}> 
                 <option value="ian">Ian</option>
