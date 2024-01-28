@@ -69,7 +69,7 @@ def search():
     #step 1: query
     imagetext = request.form['imagetext']
     response = query(imagetext)
-    responses = response["data"]["Get"]["Video2"]
+    responses = response["data"]["Get"]["Video4"]
     filenames = []
     #step 2: aggregate file names
     for item in responses:
@@ -126,26 +126,28 @@ def search():
 
 
 @app.route('/api/upload', methods=["POST", "GET"])
+@cross_origin()
 def upload():
+    
     blob_data = request.files['blob']
-    #Step 0: save blob
+
     timestamp = time.time()
     # Save the WebM file
-    webm_filename = 'input_video.webm'
-    blob_data.save(webm_filename)
 
     # Convert WebM to MP4
-    mp4_filename = f'media/joint/joint_{timestamp}.mp4'
-    subprocess.run(['ffmpeg', '-i', webm_filename, '-strict', '-2', mp4_filename])
+    with open(f'media/joint/joint_{timestamp}.mp4', 'wb') as file:
+            file.write(blob_data.read())
 
     # Extract audio to MP3
-    mp3_filename = f'media/audio/audio_{timestamp}.mp3'
-    subprocess.run(['ffmpeg', '-i', webm_filename, '-q:a', '0', '-map', 'a', mp3_filename])
-
-    # Optional: Remove the WebM file if no longer needed
-    os.remove(webm_filename)
+    with open(f'media/audio/audio_{timestamp}.wav', 'wb') as file:
+        file.write(blob_data.read())
     
+    # Load the video
+    video_capture = cv2.VideoCapture(f'media/joint/joint_{timestamp}.mp4')
 
+    # Read the first frame
+    success, frame = video_capture.read()
+    
     # Load the video
     video_capture = cv2.VideoCapture(f'media/joint/joint_{timestamp}.mp4')
 
@@ -160,6 +162,7 @@ def upload():
 
     video_capture.release()
     
+    #timestamp = request.form["timestamp"]
     #Step 1: get timestamp + people
     filename = f"joint_{timestamp}.mp4"
     person = request.form['person']
@@ -170,9 +173,13 @@ def upload():
     print("context:")
     print(context)
     #Step 3: transcription
-    transcription = transcribe(timestamp)
-    print("transcription:")
-    print(transcription)
+    try: 
+        transcription = transcribe(timestamp)
+        print("transcription:")
+        print(transcription)
+    except:
+        print("transcription processing")
+        transcription = ""
     #step 4: location
     location = get_location()
     print(location)
@@ -181,16 +188,19 @@ def upload():
     text = add(filename, transcription, context, person, location)
     print("Added embedding")
     #step 6: nft
+    
     print("Starting NFT")
     name = "Memory with " + person + ", #" + str(timestamp)
     description = context
     imageName = filename
+    
     link = nonfungibletokens(name, description, imageName)
     link = json.loads(link)["transaction_details"]["blockExplorer"]
     print(link)
     print("Ended NFT")
 
     webbrowser.open_new_tab(link)
+    
     #step 7: append to json
     print("Starting JSON")
     # Load the existing data
@@ -198,13 +208,14 @@ def upload():
         data = json.load(file)
 
     # Append new data
-    new_item = {"name": name,
+    new_item = {
+        "name": name,
         "transcription": transcription,
         "context": context,
         "people": person,
         "location": location,
-        "filename": filename,
-        "timestamp": timestamp}
+        "filename": filename
+    }
     data['memories'].append(new_item)
 
     # Save the updated data
@@ -212,11 +223,12 @@ def upload():
         json.dump(data, file, indent=4)
     print("Ended JSON")
 
-
+    
     #step 8: email
     print("Starting email")
     email(people, link)
     print("Ended email")
+    
     return jsonify({'response': 'success'})
 
 
@@ -252,7 +264,7 @@ def test():
 @app.route('/api/weaviateinit', methods=["POST", "GET"])
 def weaviateinit():    
     video_obj = {
-        "class": "Video2",
+        "class": "Video4",
         "vectorizer": "text2vec-cohere",  # If set to "none" you must always provide vectors yourself. Could be any other "text2vec-*" also.
         "moduleConfig": {
             "text2vec-cohere": {},
@@ -277,7 +289,7 @@ def add(filename, transcription, context, people, location):
         }
         batch.add_data_object(
             data_object=properties,
-            class_name="Video2"
+            class_name="Video4"
         )
     return jsonify({'results': 'Successfully added new video embedding!'})
 
@@ -287,7 +299,7 @@ def query(text):
     print(f"Query: {query}")
     response = (
         client.query
-        .get("Video2", ["file_name", "transcription", "video_context", "people", "location"])
+        .get("Video4", ["file_name", "transcription", "video_context", "people", "location"])
         .with_near_text({"concepts": [query]})
         .with_limit(3)
         .do()
@@ -298,7 +310,8 @@ def query(text):
 @app.route('/api/transcribe', methods=["POST", "GET"])
 def transcribe(timestamp):
     filepath = f"audio_{timestamp}.wav"
-    text = transcription.transcriber(filepath)
+    # text = transcription.transcriber(filepath)
+    text = ''
     return text
 
 @app.route('/api/recorder', methods=["POST", "GET"])

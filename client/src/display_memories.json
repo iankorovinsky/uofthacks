@@ -1,13 +1,20 @@
 {
     "display_memories": [
         {
-            "name": "Memory with Ian, #1706339168.5020163",
-            "transcription": "Thank you. 1, 2, 3, 4, 5.",
-            "context": "The image shows a person in front of a black backdrop. The individual has chin-length hair and is wearing a dark-colored hoodie with some text on it, although the text is not fully legible in this image. They appear to be looking slightly downward, and there might be headphones around the person's neck based on the visible part of what could be a headphone band or strap. The lighting is a bit dim, and the image quality is grainy, which suggests it may have been taken with a low-resolution camera or webcam.",
-            "people": "Ian",
+            "name": "Memory with None, #6",
+            "transcription": "",
+            "context": "The image depicts a screenshot from a virtual game or character customization interface. The theme indicated at the top is \"POINTY,\" and there is a timer counting down from 51 seconds, suggesting that the player is likely participating in a timed challenge or event to create a character or outfit that matches the theme.\n\nOn the left side of the screen, there's a menu labeled \"MY INVENTORY,\" with several tabs for different categories of items: HAIR, CLOTHES, BOARD, ACCESSORY, FAVORITE, and PET. The HAIR tab is currently selected, and a variety of hairstyles are displayed. These items seem to be categorized with R numbers and feature different styles and colors.\n\nTo the right, there's a character model preview pane showing a cartoon-style avatar currently equipped with items including a colorful hairstyle, clothes, and accessories. The avatar appears to be standing on a skateboard, which could be related to the \"BOARD\" category. Above the avatar, there's an indicator for a \"x2\" multiplier, likely related to the game's scoring or rewards system.\n\nAdditionally, there are buttons for editing favorites and setting the mood of the character, providing further customization options for the player's avatar.\n\nOverall, the screenshot captures a moment within a game where the player is engaged in creating or customizing an avatar to fit a specified theme under time constraints.",
+            "people": "None",
             "location": "Toronto Canada",
-            "filename": "joint_1706339168.5020163.mp4",
-            "timestamp": "1706339168.5020163"
+            "filename": "joint_6.mp4"
+        },
+        {
+            "name": "Memory with None, #12",
+            "transcription": "",
+            "context": "This image is a still from an animated show or film, sometimes referred to as anime. It depicts a character with dark hair and a white outfit who appears to be sitting or kneeling, viewed from an over-the-shoulder perspective. The character's face is not fully visible, adding an element of mystery or dramatic effect. In the background, there seems to be a nighttime environment or dark setting, possibly outdoors, suggested by the hint of a horizon line and what could be the sky or a dark space above. The overall color palette is quite muted with blues and dark tones, which could contribute to a somber, serene, or intense atmosphere, depending on the narrative context of the scene.",
+            "people": "None",
+            "location": "Toronto Canada",
+            "filename": "joint_12.mp4"
         }
     ]
 }
