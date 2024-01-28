@@ -75,7 +75,9 @@ video_dict = {
 }
 
 # Convert video_dict to the desired format
-memory_documents = [{"description": desc, "url": url} for desc, url in video_dict.items()]
+memory_documents = [{"description": desc[0]} for desc in video_dict.items()]
+
+print("memory_documents", memory_documents)
 
 video_descriptions = [key for key in video_dict.keys()]
 
@@ -280,7 +282,10 @@ def main():
 
             response = ""
 
-            for event in co.chat(model="command", message=user_message, stream=True, documents=memory_documents, prompt_truncation="AUTO"):
+            print("before chat")
+
+            for event in co.chat(model="command", message="Pretend you are an fun and friendly memory retrieval assistant with a knowledge base full of memories! Here's the question a user has for you: " + user_message, stream=True, documents=memory_documents, prompt_truncation="AUTO"):
+                print(event)
                 if event.event_type == StreamEvent.TEXT_GENERATION:
                     response += event.text
                     text_element.text(response)
@@ -289,8 +294,11 @@ def main():
                 elif event.event_type == StreamEvent.STREAM_END:
                     print(event.finish_reason)
 
+            print("after chat")
+
             # Generate a chatbot response
-            # response_message = generate_chat_response(user_message, memory_documents)
+            #response_message = generate_chat_response(user_message, memory_documents)
+            #print(response_message)
 
             # Add chatbot response to chat history
             chat_history.append({"role": "chatbot", "message": response})
