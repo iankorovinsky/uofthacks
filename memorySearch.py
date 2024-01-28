@@ -113,7 +113,7 @@ def get_image_description(base64_image):
                 "content": [
                     {
                         "type": "text",
-                        "text": "What's in this image?"
+                        "text": "Write a short concise description of what is in this image?"
                     },
                     {
                         "type": "image_url",
@@ -124,7 +124,7 @@ def get_image_description(base64_image):
                 ]
             }
         ],
-        "max_tokens": 300
+        "max_tokens": 50
     }
     response = requests.post("https://api.openai.com/v1/chat/completions", headers=headers, json=payload)
     print(response.json())
@@ -136,7 +136,7 @@ text_value = "..."
 
 
 def main():
-    st.title("Find Nostalgic Videos")
+    st.title("Nostalg.ai")
     
     
 
@@ -151,6 +151,12 @@ def main():
         st.error("Error: Webcam not found or cannot be accessed.")
     else:
         if st.button("Take Image"):
+            camera_port = 0 
+            ramp_frames = 30 
+            camera = cap
+            retval, im = camera.read()
+            for i in range(ramp_frames):
+                temp = camera.read()
             # Read a frame from the webcam
             ret, frame = cap.read()
 
@@ -239,7 +245,7 @@ def main():
             # Add chatbot response to chat history
             chat_history.append({"role": "chatbot", "message": response})
 
-    user_prompt = st.text_input("Enter your nostalgic prompt (e.g., '90s music', 'old cartoons', etc.):")
+    user_prompt = st.text_input("Enter your nostalgic prompt (e.g., 'plushies', 'karaoke', 'hackathons', 'sleeping'):")
     if st.button('Find Videos'):
         if user_prompt:
             # Get the top 3 reranked video descriptions
