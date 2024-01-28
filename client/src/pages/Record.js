@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import { Select, Button, Box, form } from '@chakra-ui/react'
 import Camera from '../components/Camera';
 import { useImageContext } from '../components/ImageContext';
+import { useFormContext } from '../components/FormContext';
 
 
 const Record = () => {
@@ -10,27 +11,47 @@ const Record = () => {
     const [searchValue, setSearchValue] = useState('');
 
     const { imageSrc } = useImageContext();
-
-    const handleSubmit = (e) => {
-        e.preventDefault()
-        console.log(selectedValue)
-    };
+    const { formSrc } = useFormContext();
 
     const handleChange = (event) => {
         setSelectedValue(event.target.value);
-      };
+    };
+
+    const handleSubmit = (event) => {
+        event.preventDefault()
+        formSrc.append('person', selectedValue);
+        for (let [key, value] of formSrc.entries()) {
+            console.log(`${key}:`, value);
+        }
+
+        const res = callUpload(formSrc)
+        console.log(res)
+    }
+
+    const callUpload = async (req) => {
+        const res = await fetch(' http://127.0.0.1:2000/api/upload', {
+            method: 'POST',
+            body: req
+        });
+
+        const res_data = res.json()
+
+        console.log(res_data)
+
+        return res_data
+    };
 
   return (
     <div className='flex flex-col items-center m-10'>
         <Camera isPhoto={false} />
         <Box as="form" onSubmit={handleSubmit}>
         `  <Select placeholder="Select person" width="480px" onChange={handleChange}> 
-                <option value="ian">Ian</option>
-                <option value="lucy">Lucy</option>
-                <option value="stephen">Stephen</option>
-                <option value="william">William</option>
+                <option value="IAN">Ian</option>
+                <option value="LUCY">Lucy</option>
+                <option value="STEPHEN">Stephen</option>
+                <option value="WILLIAM">William</option>
             </Select>
-            <Button type="submit" mt={4}>Submit</Button>`
+            <Button type="submit" colorScheme='green' mt={4}>Submit</Button>`
         </Box>
     </div>
   )
