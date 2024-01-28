@@ -9,6 +9,7 @@ import base64
 import os
 from dotenv import load_dotenv
 from cohere.responses.chat import StreamEvent
+from PIL import Image  # Import the Image module from the Pillow library
 
 # Load environment variables from .env file
 load_dotenv()
