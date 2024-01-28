@@ -11,10 +11,10 @@ from moviepy.editor import *
 samplerate = 44100  # Sample rate in Hertz
 channels = 2        # Number of audio channels
 timestamp = time.time()
-audio_filename = f'media/audio/output_audio_{timestamp}.wav'  # Filename to save the audio
+audio_filename = f'media/audio/audio_{timestamp}.wav'  # Filename to save the audio
 
 # Parameters for video recording
-video_filename = f'media/video/output_video_{timestamp}.avi'  # Filename to save the video
+video_filename = f'media/video/video_{timestamp}.avi'  # Filename to save the video
 
 # Create a queue to hold the audio data
 q = queue.Queue()
@@ -76,9 +76,9 @@ def stop_recording():
 
 def combine_audio_video(timestamp):
     """Combine audio and video into a single file."""
-    audio_file = f'media/audio/output_audio_{timestamp}.wav'  # Filename to save the audio
+    audio_file = f'media/audio/audio_{timestamp}.wav'  # Filename to save the audio
     # Parameters for video recording
-    video_file = f'media/video/output_video_{timestamp}.avi'  # Filename to save the video
+    video_file = f'media/video/video_{timestamp}.avi'  # Filename to save the video
     final_filename = f'final_output_{timestamp}.mp4'
     video_clip = VideoFileClip(video_file)
     audio_clip = AudioFileClip(audio_file)
