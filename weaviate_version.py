@@ -16,6 +16,9 @@ import json
 import webbrowser
 import time
 import cv2
+from elevenlabs import generate, stream, set_api_key
+
+
 
 """
 
@@ -24,6 +27,7 @@ SETUP
 """
 
 load_dotenv()
+set_api_key(os.getenv('ELEVENLABS_API_KEY'))
 COHERE_API_KEY = os.environ['COHERE_API_KEY']
 co = cohere.Client(os.environ['COHERE_API_KEY'])
 transcription.init()
@@ -58,13 +62,56 @@ CORE APIS CALLED BY FRONTEND
 #Returns a list of file_names
 @app.route('/api/search', methods=["POST", "GET"])
 def search():
+    #step 1: query
     imagetext = request.form['imagetext']
-    filenames = query(imagetext)
-    print(filenames)
+    response = query(imagetext)
+    responses = response["data"]["Get"]["Video2"]
+    filenames = []
+    #step 2: aggregate file names
+    for item in responses:
+        filenames.append(item["file_name"])
+    #step 3: summary generate
+    summary = []
+
+    summary.append(f"you are a conversational AI that can search through memories, with access to transcripts and visual contexts. narrate to me in a first person manner and a conversational, casual tone, what is observed in the following clips: ")
+    for r in responses:
+        summary.append(f"Context:")
+        summary.append(r.get("video_context"))
+        summary.append(f"Transcription: ")
+        summary.append(r.get("transcription"))
+        summary.append(f"People: ")
+        summary.append(r.get("people"))  
+        summary.append(f"Location: ")
+        summary.append(r.get("location"))  
+           
+    cohere_summary = co.summarize(text=' '.join(summary))
+
+    #step 4: tts
+
+    audio_stream = generate(
+        text=cohere_summary,
+        voice="Gigi",
+        stream=True
+    )
+    asyncio.run(stream(audio_stream))
+    #step 5: return filename array
     return jsonify({'results': filenames})
 
 #Takes in a timestamp and a person string
 #Outputs success JSON
+
+@app.route('/api/voicing', methods=["POST", "GET"])
+def voicing():
+    audio_stream = generate(
+            text="My name is William and obviously you can get a good job with an Ivey Degree",
+            voice="Gigi",
+            stream=True
+        )
+    asyncio.run(stream(audio_stream))
+    #step 5: return filename array
+    return jsonify({'results': "woop woop"})
+
+
 @app.route('/api/upload', methods=["POST", "GET"])
 def upload():
     #Step 0: save blob
@@ -224,11 +271,7 @@ def query(text):
         .do()
     )
     print(response)
-    responses = response["data"]["Get"]["Video2"]
-    urls = []
-    for item in responses:
-        urls.append(item["file_name"])
-    return urls
+    return responses
 
 @app.route('/api/transcribe', methods=["POST", "GET"])
 def transcribe(timestamp):
