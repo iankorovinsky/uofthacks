@@ -11,7 +11,7 @@
 
 .App span {
     position: absolute;
-    bottom: -60px;
+    bottom: 0px;
     border-radius: 50%;
     animation: floatBubble 5s ease-in infinite; /* Added the missing duration '5s' */
 }

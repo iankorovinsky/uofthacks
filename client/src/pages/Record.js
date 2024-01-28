@@ -51,7 +51,15 @@ const Record = () => {
             <option value="STEPHEN">Stephen</option>
             <option value="WILLIAM">William</option>
         </Select>
-        <Button type="submit" colorScheme='green'>Submit</Button>
+                <Button
+        type="submit"
+        style={{
+            backgroundColor: '#6f86d6', // A vibrant blue shade
+            color: 'white' // Assuming you want the text color to be white
+        }}
+        >
+        Submit
+        </Button>
     </Box>
 </div>
   )

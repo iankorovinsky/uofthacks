@@ -100,7 +100,15 @@ const Create = () => {
         <Camera isPhoto={true} />
     </div>
     <Box as="form" onSubmit={handleSubmit} w="100%" display="flex" justifyContent="center" mt={4}>
-        <Button type="submit" colorScheme="green">Submit</Button>
+    <Button
+  type="submit"
+  style={{
+    backgroundColor: '#6f86d6', // A vibrant blue shade
+    color: 'white' // Assuming you want the text color to be white
+  }}
+>
+  Submit
+</Button>
     </Box>
 </div>
   )

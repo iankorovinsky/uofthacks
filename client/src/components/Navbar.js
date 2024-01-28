@@ -17,21 +17,21 @@ const logoStyle = {
   
 const links = [
     {
-        name: "Home",
+        name: "HOME",
         link: "/",
         id: "home",
         priority: false,
         transparant: true,
     },
     {
-        name: "Create",
+        name: "CREATE",
         link: "/create",
         id: "create",
         priority: false,
         transparant: true,
     },
     {
-        name: "Record",
+        name: "RECORD",
         link: "/record",
         id: "record",
         priority: false,
@@ -72,7 +72,9 @@ const Navbar = () => {
                 <div className="flex justify-between items-center">
                     <Link className="flex flex-row items-center gap-4" to="/">
                         <img src={logo} alt="Logo" style={logoStyle} /> {/* Apply the style to the image */}
-                        <h2 className="text-4xl font-bold text-white hover:text-gray-200">nostalg.ai</h2>
+                        <h2 className="text-white hover:text-gray-200 text-xl lg:text-2xl font-bold">NOSTALG.AI</h2>
+
+
                     </Link>
     
                     <button
