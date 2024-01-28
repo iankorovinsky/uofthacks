@@ -126,6 +126,7 @@ def search():
 
 
 @app.route('/api/upload', methods=["POST", "GET"])
+@cross_origin()
 def upload():
     
     blob_data = request.files['blob']
