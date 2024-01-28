@@ -17,6 +17,7 @@ import webbrowser
 import time
 import cv2
 from elevenlabs import generate, stream, set_api_key
+from threading import Thread
 
 
 
@@ -100,17 +101,23 @@ def search():
 #Takes in a timestamp and a person string
 #Outputs success JSON
 
+def run_asyncio_task(task):
+    asyncio.run(task)
+
 @app.route('/api/voicing', methods=["POST", "GET"])
 def voicing():
     audio_stream = generate(
-            text="My name is William and obviously you can get a good job with an Ivey Degree",
-            voice="Gigi",
-            stream=True
-        )
-    asyncio.run(stream(audio_stream))
-    #step 5: return filename array
-    return jsonify({'results': "woop woop"})
+        text="My name is William and obviously you can get a good job with an Ivey Degree",
+        voice="Gigi",
+        stream=True
+    )
 
+    # Start the asyncio task in a new thread
+    thread = Thread(target=run_asyncio_task, args=(stream(audio_stream),))
+    thread.start()
+
+    # Return response without waiting for the thread to finish
+    return jsonify({'results': "woop woop"})
 
 @app.route('/api/upload', methods=["POST", "GET"])
 def upload():
