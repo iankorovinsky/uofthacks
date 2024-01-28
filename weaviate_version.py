@@ -1,8 +1,10 @@
 import os
 from flask import Flask, request, jsonify
 import cohere
-from flask_cors import CORS
+from flask_cors import CORS, cross_origin
 from dotenv import load_dotenv
+load_dotenv()
+os.environ["IMAGEIO_FFMPEG_EXE"] = "/usr/bin/ffmpeg"
 import weaviate
 import transcription
 import recorder as rc
@@ -45,7 +47,7 @@ client = weaviate.Client(
 print("Starting setup...")
 
 app = Flask(__name__)
-CORS(app, origins='http://localhost:2000')
+CORS(app, resources={r"/api/*": {"origins": "*"}})
 co = cohere.Client(os.environ['COHERE_API_KEY'])
 
 API_KEY = os.environ['GEOLOCATION_API_KEY']
@@ -62,6 +64,7 @@ CORE APIS CALLED BY FRONTEND
 #Takes in an image description
 #Returns a list of file_names
 @app.route('/api/search', methods=["POST", "GET"])
+@cross_origin()
 def search():
     #step 1: query
     imagetext = request.form['imagetext']
@@ -107,10 +110,11 @@ def search():
 
 @app.route('/api/upload', methods=["POST", "GET"])
 def upload():
+    blob_data = request.files['blob']
     #Step 0: save blob
 
     # Save the blob as an MP4 file
-    blob_data = request.form['blob']
+    #blob_data = request.form['blob']
     timestamp = time.time()
     with open(f'media/joint/joint_{timestamp}.mp4', 'wb') as file:
         file.write(blob_data)
@@ -133,7 +137,7 @@ def upload():
     
     #Step 1: get timestamp + people
     filename = f"joint_{timestamp}.mp4"
-    person = request.form['person']
+    person = request.files['person']
     people = []
     people.append(person)
     #Step 2: open image and transcribe
