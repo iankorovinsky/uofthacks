@@ -93,24 +93,16 @@ const Create = () => {
     };
 
   return (
-<<<<<<< HEAD
-    <div className='flex flex-col items-center m-10'>
+
+    <div className='flex flex-col items-center'>
+    <div className='flex flex-col items-center mt-10 mx-10'>
         <SearchBar onSearch={handleSearch} />
         <Camera isPhoto={true} />
-
-=======
-    <div className='flex flex-col items-center'>
-        <div className='flex flex-col items-center mt-10 mx-10'>
-            <SearchBar onSearch={handleSearch} />
-            <Camera isPhoto={true} />
-        </div>
-        <Box as="form" onSubmit={handleSubmit} className='mr-96'>
-            <Button type="submit" colorScheme="green" mt={4}>Submit</Button>`
-        </Box>
- 
->>>>>>> d7d57f347a4efbd244abf278deb3301c2dea6c95
-
     </div>
+    <Box as="form" onSubmit={handleSubmit} w="100%" display="flex" justifyContent="center" mt={4}>
+        <Button type="submit" colorScheme="green">Submit</Button>
+    </Box>
+</div>
   )
 }
 
