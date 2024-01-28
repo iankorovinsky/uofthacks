@@ -30,13 +30,6 @@ const links = [
         priority: false,
         transparant: true,
     },
-    {
-        name: "Gallery",
-        link: "/gallery",
-        id: "gallery",
-        priority: false,
-        transparant: true,
-    },
 ]
 
    /*

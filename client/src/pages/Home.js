@@ -19,6 +19,7 @@ function MemoryCard({ memory, onClick }) {
   console.log(filename)
   return (
     <Card
+      className='m-6 shadow-2xl'
       hoverable
       onClick={onClick}
       style={cardStyle}
@@ -56,9 +57,13 @@ function App() {
           display: 'flex',
           flexWrap: 'wrap',
         }}>
-        {memoriesData.memories.map((memory, index) => (
-          <MemoryCard key={index} memory={memory} onClick={() => openModal(memory)} />
-        ))}
+        <div className='flex justify-center w-full'>
+          <div className="grid grid-cols-3 gap-4">
+          {memoriesData.memories.map((memory, index) => (
+              <MemoryCard key={index} memory={memory} onClick={() => openModal(memory)} />
+          ))}
+          </div>
+        </div>
       </div>
 
       <Modal

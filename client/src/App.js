@@ -26,7 +26,6 @@ const App = () => {
                 <Route path="/" exact element={<Home />} />
                 <Route path="/create" exact element={<Create />} />
                 <Route path="/record" exact element={<Record />} />
-                <Route path="/gallery" exact element={<Gallery />} />
               </Routes>
             </AnimatePresence>
             </Suspense>

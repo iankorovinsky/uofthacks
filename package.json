@@ -1,5 +1,6 @@
 {
   "dependencies": {
-    "@chakra-ui/button": "^2.1.0"
+    "@chakra-ui/button": "^2.1.0",
+    "antd": "^5.13.2"
   }
 }
