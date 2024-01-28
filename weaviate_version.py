@@ -14,6 +14,8 @@ import nft
 import eyes
 import json
 import webbrowser
+import time
+import cv2
 
 """
 
@@ -65,8 +67,31 @@ def search():
 #Outputs success JSON
 @app.route('/api/upload', methods=["POST", "GET"])
 def upload():
+    #Step 0: save blob
+
+    # Save the blob as an MP4 file
+    blob_data = request.form['blob']
+    timestamp = time.time()
+    with open(f'media/joint/joint_{timestamp}.mp4', 'wb') as file:
+        file.write(blob_data)
+
+    # Save the blob as an MP3 file
+    with open(f'media/audio/audio_{timestamp}.wav', 'wb') as file:
+        file.write(blob_data)
+
+    # Load the video
+    video_capture = cv2.VideoCapture(f'media/joint/joint_{timestamp}.mp4')
+
+    # Read the first frame
+    success, frame = video_capture.read()
+
+    if success:
+        # Save the first frame as an image
+        cv2.imwrite(f'media/photo/photo_{timestamp}.jpg', frame)
+
+    video_capture.release()
+    
     #Step 1: get timestamp + people
-    timestamp = request.form['timestamp']
     filename = f"joint_{timestamp}.mp4"
     person = request.form['person']
     people = []
@@ -123,7 +148,7 @@ def upload():
     print("Starting email")
     email(people, link)
     print("Ended email")
-    return jsonify({'results': 'success'})
+    return jsonify({'': 'success'})
 
 
 """
