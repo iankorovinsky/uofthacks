@@ -10,6 +10,7 @@ import Navbar from './components/Navbar'
 import Home from './pages/Home'
 import Create from './pages/Create'
 import Record from './pages/Record'
+import Gallery from "./pages/Gallery";
 
 const App = () => {
   return (
@@ -25,6 +26,7 @@ const App = () => {
                 <Route path="/" exact element={<Home />} />
                 <Route path="/create" exact element={<Create />} />
                 <Route path="/record" exact element={<Record />} />
+                <Route path="/gallery" exact element={<Gallery />} />
               </Routes>
             </AnimatePresence>
             </Suspense>
