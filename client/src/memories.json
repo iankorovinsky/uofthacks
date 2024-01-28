@@ -44,8 +44,15 @@
             "location": "Toronto Canada",
             "filename": "joint_1706429678.9420748.mp4",
             "timestamp": "1706339168.5020163"
+        },
+        {
+            "name": "Memory with STEPHEN, #1706439183.89868",
+            "transcription": "",
+            "context": "The image shows two individuals. The person in the foreground is looking directly at the camera and appears to be in contemplation or mid-gesture with their hand near their face. There is a prominent light flare stretching across the image, likely due to a strong light source reflecting off the camera lens. The individual in the background is focused on something on their smartphone, apparently oblivious to the camera. The setting looks like an indoor space with a ceiling that reflects the light, creating a bright ambiance.",
+            "people": "STEPHEN",
+            "location": "Toronto Canada",
+            "filename": "joint_1706439183.89868.mp4",
+            "timestamp": 1706439183.89868
         }
-        
-
     ]
 }
