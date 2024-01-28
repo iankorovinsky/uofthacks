@@ -94,16 +94,7 @@ const Create = () => {
     <div className='flex flex-col items-center m-10'>
         <SearchBar onSearch={handleSearch} />
         <Camera isPhoto={true} />
-        <Box as="form" onSubmit={handleUpload}>
-        `  <Select placeholder="Select person" width="480px" onChange={handleChange}> 
-                <option value="ian">Ian</option>
-                <option value="lucy">Lucy</option>
-                <option value="stephen">Stephen</option>
-                <option value="william">William</option>
-            </Select>
-            <Button type="submit" mt={4}>Submit</Button>`
-        </Box>
- 
+
 
     </div>
   )
