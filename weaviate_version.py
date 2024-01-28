@@ -135,8 +135,6 @@ def upload():
     # Convert WebM to MP4
     with open(f'media/joint/joint_{timestamp}.mp4', 'wb') as file:
             file.write(blob_data.read())
-    with open(f'media/joint/joint_{timestamp}.mp4', 'wb') as file:
-            file.write(blob_data.read())
 
     # Extract audio to MP3
     with open(f'media/audio/audio_{timestamp}.wav', 'wb') as file:
